@@ -1,10 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
+import { NgModule, Component } from '@angular/core';
+
+import { MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MatGridListModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AnswerComponent } from './answer/answer.component';
+
+import { HomeService } from './home.service';
 
 @NgModule({
   declarations: [
@@ -14,9 +20,19 @@ import { AnswerComponent } from './answer/answer.component';
     AnswerComponent
   ],
   imports: [
-    BrowserModule
+    HttpModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MdButtonModule,
+    MdMenuModule,
+    MdCardModule,
+    MdToolbarModule,
+    MdIconModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ HomeService ],
+  bootstrap: [ 
+    AppComponent,
+    HomeComponent
+  ]
 })
 export class AppModule { }
