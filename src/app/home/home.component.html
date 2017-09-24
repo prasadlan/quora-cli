@@ -1,3 +1,5 @@
-<p>
-  home works!
-</p>
+<md-grid-list cols="1" rowHeight="2:1">
+  <md-grid-tile *ngFor="let question of questions">
+    <md-card>{{question.text}}</md-card>
+  </md-grid-tile>
+</md-grid-list>
