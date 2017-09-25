@@ -1,3 +1,64 @@
-<p>
-  login works!
-</p>
+<md-toolbar> Quora </md-toolbar>
+<md-tab-group>
+  <md-tab label="Sign Up">
+    <md-grid-list cols="1" rowHeight="4:3">
+      <md-grid-tile>
+        <form (submit)="loginUser($event)">
+          <div>
+           <p>
+            <md-form-field class="FullName">
+              <input mdInput placeholder="Full Name" value="">
+            </md-form-field>
+           </p>
+           <p>
+            <md-form-field class="UserName">
+              <input mdInput placeholder="UserName" value="">
+            </md-form-field>
+           </p>
+           <p>
+            <md-form-field class="Email">
+             <input mdInput placeholder="Email" value="">
+            </md-form-field>
+           </p>
+           <p>
+            <md-form-field class="Password">
+              <input mdInput placeholder="Password" value="">
+            </md-form-field>
+           </p>
+           <p>
+             <button md-button>Sign Up</button>
+           </p>
+          </div>
+        </form>
+      </md-grid-tile>
+    </md-grid-list>
+  </md-tab>
+  <md-tab label="Login">
+    <md-grid-list cols="1" rowHeight="4:3">
+      <md-grid-tile>
+        <form>
+          <div>
+           <p>
+            <md-form-field class="UserName">
+              <input mdInput placeholder="UserName" value="">
+            </md-form-field>
+           </p>
+           <p>
+            <md-form-field class="Password">
+              <input mdInput placeholder="Password" value="">
+            </md-form-field>
+           </p>
+           <p>
+             <button md-button>Login</button>
+           </p>
+          </div>
+        </form>
+      </md-grid-tile>
+    </md-grid-list>
+  </md-tab>
+</md-tab-group>
+
+
+<!-- Copyright 2017 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

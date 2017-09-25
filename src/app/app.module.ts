@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AnswerComponent } from './answer/answer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MdButtonModule, MdToolbarModule, MatGridListModule, MdTabsModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -14,9 +16,13 @@ import { AnswerComponent } from './answer/answer.component';
     AnswerComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    MdButtonModule,
+    MdToolbarModule,
+    MdTabsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, LoginComponent]
 })
 export class AppModule { }
