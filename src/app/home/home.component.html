@@ -1,5 +1,20 @@
-<md-grid-list cols="1" rowHeight="2:1">
-  <md-grid-tile *ngFor="let question of questions">
-    <md-card>{{question.text}}</md-card>
+<md-grid-list cols="1" rowHeight="2:1"> 
+  <md-grid-tile>
+    <md-card>
+      <form class="ask-question">
+        <md-form-field class="form-element-width">
+          <textarea mdInput placeholder="What is you question?"></textarea>
+        </md-form-field>
+      </form>
+      <md-card-actions> <button md-button class="custom-button">Ask Question</button> </md-card-actions>
+    </md-card>
+  </md-grid-tile>
+  <md-grid-tile *ngFor="let question of questions"> 
+    <md-card> 
+      <md-card-title> {{question.question}} </md-card-title> 
+      <md-card-subtitle> <span style="margin-right:25px;">{{question.user}}</span><span>Answered {{question.date}}</span> </md-card-subtitle> 
+      <md-card-content> {{question.answer}} </md-card-content> 
+      <md-card-actions> <button md-button>Upvote</button> <button md-button>Downvote</button> </md-card-actions> 
+    </md-card> 
   </md-grid-tile>
 </md-grid-list>

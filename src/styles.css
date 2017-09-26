@@ -1,8 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 
 body{
   padding: 0em 10em;
   margin: 0;  
+}
+
+.custom-button{
+  background-color: #3f51b5;
+  color: rgba(255,255,255,.87)!important;
 }

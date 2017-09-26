@@ -1,0 +1,15 @@
+.form-element-width{
+    width: 100%;
+}
+
+md-card{
+    overflow: auto;
+}
+
+md-grid-list{
+    margin: 0 5px;
+}
+
+.custom-button{
+    float: right;
+}

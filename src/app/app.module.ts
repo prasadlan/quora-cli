@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { NgModule, Component } from '@angular/core';
 
-import { MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MatGridListModule } from '@angular/material';
+import { MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MatGridListModule, MatInputModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -27,7 +27,8 @@ import { HomeService } from './home.service';
     MdMenuModule,
     MdCardModule,
     MdToolbarModule,
-    MdIconModule
+    MdIconModule,
+    MatInputModule
   ],
   providers: [ HomeService ],
   bootstrap: [ 
