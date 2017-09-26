@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { NgModule, Component } from '@angular/core';
 
-import { MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MatGridListModule, MatInputModule } from '@angular/material';
+import { MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MatGridListModule, MatInputModule, MdTabsModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -28,12 +28,14 @@ import { HomeService } from './home.service';
     MdCardModule,
     MdToolbarModule,
     MdIconModule,
-    MatInputModule
+    MatInputModule,
+    MdTabsModule
   ],
   providers: [ HomeService ],
   bootstrap: [ 
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ]
 })
 export class AppModule { }
