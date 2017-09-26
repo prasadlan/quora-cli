@@ -1,5 +1,8 @@
 export class Question {
     id: number;
-    text: string;
+    question: string;
+    answer: string;
+    user: string;
     category_id: number;
+    date: string;
   }

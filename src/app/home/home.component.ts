@@ -9,6 +9,7 @@ import { Question } from '../question';
 })
 export class HomeComponent implements OnInit {
   questions: Question[];
+  statusMessage: string;
 
   constructor(private _homeService:HomeService) {
 
@@ -16,11 +17,17 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getQuestions();
-    console.log(this.questions);
   }
 
   getQuestions(): void {
     this.questions = this._homeService.getQuestions(); 
+  }
+
+  askQuestion(question: string): void {
+    this._homeService.askQuestion(question)
+                      .subscribe((res: Response) => {
+                        this.statusMessage = 'Question posted successfully';
+                      });
   }
 
 }

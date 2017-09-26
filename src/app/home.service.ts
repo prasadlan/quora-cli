@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { QUESTIONS } from './mock-questions';
 import { Question } from './question';
 
@@ -10,6 +10,7 @@ import 'rxjs/add/operator/map';
 export class HomeService {
 
   private questionUrl = '/questions';
+  private askQnUrl = '/question/add'
 
   constructor(private http: Http) { 
 
@@ -18,16 +19,24 @@ export class HomeService {
   getQuestions(): Question[] {
     return QUESTIONS;
   }
+
   // getQuestions() {
   //   return this.http.get(this.questionUrl)
   //                   .map(response => response.json())
-  //                   .subscribe(res => this.questions = res)
   // }
 
-  // getQuestionsByCategory(id: number) {
-  //   const url = `${this.questionUrl}/${id}`;
-  //   return this.http.get(url)
-  //                   .map(response => response.json())
-  //                   .subscribe(res => this.questions = res)
-  // }
+  getQuestionsByCategory(id: number) {
+    const url = `${this.questionUrl}/${id}`;
+    return this.http.get(url)
+                    .map(response => response.json())
+  }
+
+  askQuestion(question: string) {
+    let header = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: header });
+    return this.http.post(this.askQnUrl, question, options)
+                    .map(response => response.json())
+  }
+
+  
 }
