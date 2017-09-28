@@ -3,7 +3,7 @@ import { HttpModule } from '@angular/http';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { MdButtonModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MatGridListModule, MatInputModule, MdTabsModule } from '@angular/material';
+import { MdButtonModule, MdListModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MatGridListModule, MatInputModule, MdTabsModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -12,10 +12,13 @@ import { HomeComponent } from './home/home.component';
 import { AnswerComponent } from './answer/answer.component';
 
 import { HomeService } from './home.service';
+import { FilterComponent } from './filter/filter.component';
 
 export const router: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: '', component: LoginComponent }
+  { path: '', component: LoginComponent },
+  { path: 'answers', component: AnswerComponent},
+  { path: 'game-of-thrones', component: FilterComponent}
    ];
 
 @NgModule({
@@ -23,13 +26,15 @@ export const router: Routes = [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    AnswerComponent
+    AnswerComponent,
+    FilterComponent
   ],
   imports: [
     HttpModule,
     BrowserModule,
     BrowserAnimationsModule,
     MdButtonModule,
+    MdListModule,
     MdMenuModule,
     MdCardModule,
     MdToolbarModule,
@@ -45,7 +50,8 @@ export const router: Routes = [
   bootstrap: [ 
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    AnswerComponent
   ]
 })
 export class AppModule { }

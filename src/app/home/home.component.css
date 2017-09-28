@@ -15,6 +15,62 @@ md-grid-list{
     margin: 0 5px;
 }
 
+md-card{
+    margin: 5px 0;
+}
+
 .custom-button{
     float: right;
+    background: #b92b27
+}
+
+md-card-content{
+    line-height: 1.6em;
+}
+
+.left{
+    float: left;
+    width: 200px;
+    margin: 20px 25px 0 200px;
+}
+
+.centre{
+    float: left;
+    width: 600px;
+    padding-top: 30px;
+}
+
+.md-item-list-selected{
+    background: #ececec;
+    color: #666;
+    border-radius: 3px;
+    font-weight: 400;
+    cursor: default;
+}
+
+.custom-list-item{
+    font-size: 0.9em!important;
+    height:35px!important;
+    color: #666!important;
+}
+
+md-card-title{
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+.vote-button{
+    color: rgba(0,0,0,.54)!important;
+}
+
+md-card-subtitle{
+    font-size: 0.8em;
+}
+
+md-card-title{
+    font-size: 1.2em;
+}
+
+md-toolbar{
+    background: #b92b27!important;
 }

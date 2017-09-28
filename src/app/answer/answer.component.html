@@ -1,3 +1,39 @@
-<p>
-  answer works!
-</p>
+<md-toolbar color="primary">
+  <span style="margin-right:25px;">Quora</span>
+    
+  <nav>
+    <a routerLink="/home" class="doc-button mat-button" routerLinkActive="" href="/home">Home</a>
+    <a routerLink="/answers" class="doc-button mat-button" routerLinkActive="" href="/answers">Answers</a>
+    <a routerLink="/notifications" class="doc-button mat-button" routerLinkActive="" href="/notifications">Notifications</a>
+    <a routerLink="/" routerLinkActive=""></a>
+  </nav>
+  <router-outlet></router-outlet>
+</md-toolbar>
+
+<md-grid-list cols="8" rowHeight="2:1"> 
+  <div class="left">
+    <md-grid-tile colspan="2">
+      <md-nav-list>
+        <a class="custom-list-item md-item-list-selected" md-list-item href="/home"> Questions For You </a>
+        <a class="custom-list-item" md-list-item href="/"> Answer Requests </a>
+        <a class="custom-list-item" md-list-item href="/"> Answer Later </a>
+        <a class="custom-list-item" md-list-item href="/"> Drafts </a>
+      </md-nav-list>
+    </md-grid-tile>
+  </div>
+  <div class="centre">
+  <md-grid-tile colspan="4">
+    <md-card *ngFor="let question of questions"> 
+      <md-card-title> {{question.question}} </md-card-title> 
+      <md-card-subtitle> <span style="margin-right:25px;">Last followed 30m ago</span><span>100 answers</span> </md-card-subtitle> 
+      <md-card-content>  </md-card-content> 
+      <md-card-actions> <button md-button class="vote-button">Answer</button> <button md-button class="vote-button">Pass</button> <button md-button class="vote-button">Follow</button> <button md-button class="vote-button">Downvote</button> </md-card-actions> 
+    </md-card>
+  </md-grid-tile>
+  </div>
+  <div class="right">
+  <md-grid-tile colspan="2"> 
+      
+  </md-grid-tile>
+  </div>
+</md-grid-list>

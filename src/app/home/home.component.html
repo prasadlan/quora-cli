@@ -1,17 +1,32 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <md-toolbar color="primary">
-    <span style="margin-right:25px;">Quora</span>
-      
-    <button md-menu-item class="custom-menu-item">Home</button>
-    <button md-menu-item class="custom-menu-item">Answers</button>
-    <button md-menu-item class="custom-menu-item">Notifications</button>
-  </md-toolbar>
-      
-  <md-menu #appMenu="mdMenu">
+  <span style="margin-right:25px;">Quora</span>
     
-  </md-menu>
-<md-grid-list cols="1" rowHeight="2:1"> 
-  <md-grid-tile>
+  <nav>
+    <a routerLink="/home" class="doc-button mat-button" routerLinkActive="" href="/home">Home</a>
+    <a routerLink="/answers" class="doc-button mat-button" routerLinkActive="" href="/answers">Answers</a>
+    <a routerLink="/notifications" class="doc-button mat-button" routerLinkActive="" href="/notifications">Notifications</a>
+    <a routerLink="/" routerLinkActive=""></a>
+  </nav>
+  <router-outlet></router-outlet>
+</md-toolbar>
+
+<md-grid-list cols="8" rowHeight="2:1"> 
+  <div class="left">
+    <md-grid-tile colspan="2">
+      <md-nav-list>
+        <a class="custom-list-item md-item-list-selected" md-list-item href="/home"> Top Stories </a>
+        <a class="custom-list-item" md-list-item href="/"> New Questions </a>
+        <a class="custom-list-item" md-list-item href="/"> Bookmarked Answers </a>
+        <a class="custom-list-item" md-list-item href="/"> Science </a>
+        <a class="custom-list-item" md-list-item href="/"> Football </a>
+        <a class="custom-list-item" md-list-item href="/"> Movies </a>
+        <a class="custom-list-item" md-list-item href="/game-of-thrones"> Game of Thrones </a>
+      </md-nav-list>
+    </md-grid-tile>
+  </div>
+  <div class="centre">
+  <md-grid-tile colspan="4">
     <md-card>
       <form class="ask-question">
         <md-form-field class="form-element-width">
@@ -20,13 +35,17 @@
       </form>
       <md-card-actions> <button md-button class="custom-button">Ask Question</button> </md-card-actions>
     </md-card>
-  </md-grid-tile>
-  <md-grid-tile *ngFor="let question of questions"> 
-    <md-card> 
+    <md-card *ngFor="let question of questions"> 
       <md-card-title> {{question.question}} </md-card-title> 
       <md-card-subtitle> <span style="margin-right:25px;">{{question.user}}</span><span>Answered {{question.date}}</span> </md-card-subtitle> 
       <md-card-content> {{question.answer}} </md-card-content> 
-      <md-card-actions> <button md-button>Upvote</button> <button md-button>Downvote</button> </md-card-actions> 
-    </md-card> 
+      <md-card-actions> <button md-button class="vote-button">Upvote</button> <button md-button class="vote-button">Downvote</button> </md-card-actions> 
+    </md-card>
   </md-grid-tile>
+  </div>
+  <div class="right">
+  <md-grid-tile colspan="2"> 
+     
+  </md-grid-tile>
+  </div>
 </md-grid-list>
