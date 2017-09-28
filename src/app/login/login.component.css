@@ -1,7 +1,7 @@
 
 body{
-    padding: 6em 32em;
-    margin: 0; 
+    padding: 6em 0;
+    margin: 0 auto; 
     background-image: url("https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX9364891.jpg"); 
     background-repeat: repeat;
   }
@@ -24,4 +24,14 @@ md-form-field{
 
 .custom-button{
     background: #b92b27;
+}
+
+md-tab-group{
+    width: 600px;
+    margin: 0 auto;
+}
+
+md-toolbar{
+    width: 600px;
+    margin: 0 auto;
 }
