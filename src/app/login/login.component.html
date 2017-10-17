@@ -5,33 +5,33 @@
     <md-grid-list cols="1" rowHeight="4:3">
       <md-grid-tile>
         <md-card>
-        <form name="form" (ngSubmit)="signupUser()">
+        <form [formGroup]="signupform" (ngSubmit)="signupUser(signupform.value)">
           <div>
            <p>
             <md-form-field class="FullName">
-              <input mdInput placeholder="Full Name" name="fullname" value="">
+              <input mdInput placeholder="Full Name" formControlName="name" value="">
             </md-form-field>
            </p>
            <p>
             <md-form-field class="UserName">
-              <input mdInput placeholder="Username" name="username" value="">
+              <input mdInput placeholder="Username" formControlName="username" value="">
             </md-form-field>
            </p>
            <p>
             <md-form-field class="Email">
-             <input mdInput placeholder="Email" name="email" value="">
+             <input mdInput placeholder="Email" formControlName="email" value="">
             </md-form-field>
            </p>
            <p>
             <md-form-field class="Password">
-              <input mdInput type="password" placeholder="Password" name="password" value="">
+              <input mdInput type="password" placeholder="Password" formControlName="password" value="">
             </md-form-field>
            </p>
            <p>
-             <button md-raised-button color="accent" type="submit" class="custom-button" (click)="singnupUser()">Sign Up</button> 
-             &nbsp; &nbsp; &nbsp; &nbsp;
-             <button md-raised-button color="accent" routerLink="/" class="custom-button">Cancel</button>
-           </p>
+            <button md-raised-button color="accent" type="submit" class="custom-button" >Sign Up</button> 
+            &nbsp; &nbsp; &nbsp; &nbsp;
+            <button md-raised-button color="accent" routerLink="/" class="custom-button">Cancel</button>
+          </p>
           </div>
         </form>
         </md-card>
@@ -42,16 +42,16 @@
     <md-grid-list cols="1" rowHeight="4:3">
       <md-grid-tile>
         <md-card>
-        <form (submit)="loginUser($event)">
-          <div>
+          <form [formGroup]="signinform" (ngSubmit)="loginUser(signinform.value)">
+            <div>
            <p>
             <md-form-field class="UserName">
-              <input mdInput placeholder="Username" name="username" value="">
+              <input mdInput placeholder="Username" formControlName="username" value="">
             </md-form-field>
            </p>
            <p>
             <md-form-field class="Password">
-              <input mdInput type="password" placeholder="Password" name="password" value="">
+              <input mdInput type="password" placeholder="Password" formControlName="password" value="">
             </md-form-field>
            </p>
            <p>

@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../user';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +14,22 @@ export class LoginComponent implements OnInit {
   username: string;
   email: string;
   password: string;
+  signupform: FormGroup;
+  signinform: FormGroup;
   signinUser = new User();
   model: any = {};
-  constructor(private router: Router, private user: UserService) { }
+  constructor(private fb: FormBuilder, private router: Router, private user: UserService) { 
+    this.signupform = fb.group({
+      'username': [''],
+      'name': [''],
+      'email': [''],
+      'password': ['']
+    });
+    this.signinform = fb.group({
+      'username': [''],
+      'password': ['']
+    });
+  }
 
   ngOnInit() {
     
@@ -24,8 +38,8 @@ export class LoginComponent implements OnInit {
   loginUser(e) {
   	e.preventDefault();
   	console.log(e);
-  	const username = e.target.elements[0].value;
-  	const password = e.target.elements[1].value;
+  	const username = e.username;
+  	const password = e.password;
     this.signinUser.username = username;
     this.signinUser.password = password;
     this.user.loginUser(username, password)
@@ -42,19 +56,19 @@ export class LoginComponent implements OnInit {
     }
 
     @Output() createNewUserEvent = new EventEmitter();
-    signupUser() {
+    signupUser(value) {
       const signinuser = {
-        name: this.name,
-        email: this.email,
-        username: this.username,
-        password: this.password
+        name: value.name,
+        email: value.email,
+        username: value.username,
+        password: value.password
       };
       console.log(this.signinUser);
       this.user.create(signinuser)
         .subscribe(status => {
           //localStorage.setItem('currentUser', JSON.stringify(this.signinUser));
           this.user.setUserLoggedIn();
-          this.router.navigate(['/home']);
+          this.router.navigate(['home']);
         })
     }
 }
