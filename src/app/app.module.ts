@@ -3,7 +3,7 @@ import { HttpModule } from '@angular/http';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { MdButtonModule, MdListModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MatGridListModule, MatInputModule, MdTabsModule } from '@angular/material';
+import { MdButtonModule, MdListModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MatGridListModule, MatInputModule, MdTabsModule, MatExpansionModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -22,8 +22,7 @@ import { FilterComponent } from './filter/filter.component';
 export const router: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', component: LoginComponent },
-  { path: 'answers', component: AnswerComponent},
-  { path: 'game-of-thrones', component: FilterComponent}
+  { path: 'answers', component: AnswerComponent}
    ];
 
 @NgModule({
@@ -32,7 +31,7 @@ export const router: Routes = [
     LoginComponent,
     HomeComponent,
     AnswerComponent,
-    FilterComponent,
+    FilterComponent
   ],
   imports: [
     HttpModule,
@@ -46,6 +45,7 @@ export const router: Routes = [
     MdIconModule,
     MatInputModule,
     MdTabsModule,
+    MatExpansionModule,
     RouterModule.forRoot(
       router,
       { enableTracing: true } // <-- debugging purposes only

@@ -1,13 +1,42 @@
 import { TestBed, async } from '@angular/core/testing';
-
+import { HttpModule } from '@angular/http';
+import { NgModule, Component } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserModule } from '@angular/platform-browser';
+import { MdButtonModule, MdListModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MatGridListModule, MatInputModule, MdTabsModule, MatExpansionModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
+
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { AnswerComponent } from './answer/answer.component';
+import { HomeService } from './home.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        LoginComponent,
+        HomeComponent,
+        AnswerComponent
       ],
+      imports: [
+        RouterTestingModule,
+        HttpModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        MdButtonModule,
+        MdListModule,
+        MdMenuModule,
+        MdCardModule,
+        MdToolbarModule,
+        MdIconModule,
+        MatInputModule,
+        MdTabsModule,
+        MatExpansionModule,
+      ],
+      providers: [ HomeService ],
     }).compileComponents();
   }));
 
@@ -17,16 +46,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  it(`should have as title 'app'`, async(() => {
+  it(`should have as title 'Quora'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app');
+    expect(app.title).toEqual('Quora');
   }));
 
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
-  }));
 });
