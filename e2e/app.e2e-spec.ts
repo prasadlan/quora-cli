@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('quora-cli App', () => {
+describe('Quora App', () => {
   let page: AppPage;
 
   beforeEach(() => {
