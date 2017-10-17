@@ -11,7 +11,12 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AnswerComponent } from './answer/answer.component';
 
+import { User } from './models/user';
+
+import { environment } from '../environments/environment';
+
 import { HomeService } from './home.service';
+import { UserService } from './services/user.service';
 import { FilterComponent } from './filter/filter.component';
 
 export const router: Routes = [
@@ -27,7 +32,7 @@ export const router: Routes = [
     LoginComponent,
     HomeComponent,
     AnswerComponent,
-    FilterComponent
+    FilterComponent,
   ],
   imports: [
     HttpModule,
@@ -46,7 +51,9 @@ export const router: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [ HomeService ],
+  providers: [ 
+    HomeService,
+    UserService],
   bootstrap: [ 
     AppComponent,
     HomeComponent,

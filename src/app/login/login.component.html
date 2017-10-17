@@ -5,30 +5,32 @@
     <md-grid-list cols="1" rowHeight="4:3">
       <md-grid-tile>
         <md-card>
-        <form (submit)="loginUser($event)">
+        <form name="form" (ngSubmit)="signupUser()">
           <div>
            <p>
             <md-form-field class="FullName">
-              <input mdInput placeholder="Full Name" value="">
+              <input mdInput placeholder="Full Name" name="fullname" value="">
             </md-form-field>
            </p>
            <p>
             <md-form-field class="UserName">
-              <input mdInput placeholder="UserName" value="">
+              <input mdInput placeholder="Username" name="username" value="">
             </md-form-field>
            </p>
            <p>
             <md-form-field class="Email">
-             <input mdInput placeholder="Email" value="">
+             <input mdInput placeholder="Email" name="email" value="">
             </md-form-field>
            </p>
            <p>
             <md-form-field class="Password">
-              <input mdInput type="password" placeholder="Password" value="">
+              <input mdInput type="password" placeholder="Password" name="password" value="">
             </md-form-field>
            </p>
            <p>
-             <button md-raised-button color="accent" class="custom-button">Sign Up</button>
+             <button md-raised-button color="accent" type="submit" class="custom-button" (click)="singnupUser()">Sign Up</button> 
+             &nbsp; &nbsp; &nbsp; &nbsp;
+             <button md-raised-button color="accent" routerLink="/" class="custom-button">Cancel</button>
            </p>
           </div>
         </form>
@@ -40,20 +42,22 @@
     <md-grid-list cols="1" rowHeight="4:3">
       <md-grid-tile>
         <md-card>
-        <form>
+        <form (submit)="loginUser($event)">
           <div>
            <p>
             <md-form-field class="UserName">
-              <input mdInput placeholder="UserName" value="">
+              <input mdInput placeholder="Username" name="username" value="">
             </md-form-field>
            </p>
            <p>
             <md-form-field class="Password">
-              <input mdInput type="password" placeholder="Password" value="">
+              <input mdInput type="password" placeholder="Password" name="password" value="">
             </md-form-field>
            </p>
            <p>
-             <button md-raised-button color="accent" class="custom-button">Login</button>
+             <button md-raised-button color="accent" type="submit" class="custom-button">Login</button> 
+             &nbsp; &nbsp; &nbsp;
+             <a href="">Forgot Password?</a>
            </p>
           </div>
         </form>

@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { UserService } from '../services/user.service';
+import { User } from '../user';
+import { Router } from '@angular/router';
+//import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-login',
@@ -6,20 +10,53 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor() { }
+  name: string;
+  username: string;
+  email: string;
+  password: string;
+  signinUser = new User();
+  model: any = {};
+  constructor(private router: Router, private user: UserService) { }
 
   ngOnInit() {
+    
   }
+
   loginUser(e) {
   	e.preventDefault();
   	console.log(e);
-  	var username = e.target.elements[0].value;
-  	var password = e.target.elements[1].value;
-  	
-  	if(username == 'admin' && password == 'admin') {
-      //this.user.setUserLoggedIn();
-  		//this.router.navigate(['dashboard']);
-  	}
-  }
+  	const username = e.target.elements[0].value;
+  	const password = e.target.elements[1].value;
+    this.signinUser.username = username;
+    this.signinUser.password = password;
+    this.user.loginUser(username, password)
+      .then(status => {
+        console.log(status);
+        if(status) {
+          this.router.navigate(['home']);
+          this.user.setUserLoggedIn();
+        }
+        else {
+          this.router.navigate(['']);
+        }
+      }).catch(err => console.log(err));
+    }
+
+    @Output() createNewUserEvent = new EventEmitter();
+    signupUser() {
+      const signinuser = {
+        name: this.name,
+        email: this.email,
+        username: this.username,
+        password: this.password
+      };
+      console.log(this.signinUser);
+      this.user.create(signinuser)
+        .subscribe(status => {
+          //localStorage.setItem('currentUser', JSON.stringify(this.signinUser));
+          //this.flashMessage.show('invalid email',{timeout: 3000});
+          this.user.setUserLoggedIn();
+          this.router.navigate(['/home']);
+        })
+    }
 }
