@@ -1,11 +1,11 @@
-<body>
+<div class="login-holder">
 <md-toolbar color="accent" theme="light"> <span class="remaining"></span><strong>Quora </strong></md-toolbar>
 <md-tab-group class="tabs" md-stretch-tabs align="center">
   <md-tab md-raised-tab label="Sign Up" color="accent">
     <md-grid-list cols="1" rowHeight="4:3">
       <md-grid-tile>
         <md-card>
-        <form (submit)="loginUser($event)">
+        <form>
           <div>
            <p>
             <md-form-field class="FullName">
@@ -62,7 +62,7 @@
     </md-grid-list>
   </md-tab>
 </md-tab-group>
-</body>
+</div>
 
 <!-- Copyright 2017 Google Inc. All Rights Reserved.
     Use of this source code is governed by an MIT-style license that
