@@ -1,5 +1,7 @@
 import { LoginPage } from './login.po';
 
+
+
 describe('quora-cli App', () => {
   let page: LoginPage;
 
@@ -31,17 +33,13 @@ describe('quora-cli App', () => {
 //     page.navigateTo('/');    
 //   });
 
-//   it('should display home page', () => {
-//     page.navigateTo('/home');    
-//   });
-
 //   it('should display answers page', () => {
 //     page.navigateTo('/answers');    
 //   });
 
   it('should fill in the signup form', () => {
     page.navigateTo('/');
-    
+
     let fullname = page.getFullNameInput();
     let username = page.getUserNameInput();
     let email = page.getEmailInput();
@@ -58,5 +56,9 @@ describe('quora-cli App', () => {
 
     let btn = page.getSignUpButton().click;
 });
+
+it('should display home page', () => {
+    page.navigateTo('/home');    
+  });
   
 });
