@@ -53,4 +53,12 @@ describe('LoginComponent', () => {
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render a Sign Up button', async(() => {
+    const fixture = TestBed.createComponent(LoginComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('button').textContent).toContain('Sign Up');
+  }));
+
 });

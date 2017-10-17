@@ -54,4 +54,13 @@ describe('AnswerComponent', () => {
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render answers page navigation list', async(() => {
+    const fixture = TestBed.createComponent(AnswerComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('md-nav-list')).length == 1;
+  }));
+  
+  
 });
