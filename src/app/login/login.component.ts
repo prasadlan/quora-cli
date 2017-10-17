@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../user';
 import { Router } from '@angular/router';
-//import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-login',
@@ -54,7 +53,6 @@ export class LoginComponent implements OnInit {
       this.user.create(signinuser)
         .subscribe(status => {
           //localStorage.setItem('currentUser', JSON.stringify(this.signinUser));
-          //this.flashMessage.show('invalid email',{timeout: 3000});
           this.user.setUserLoggedIn();
           this.router.navigate(['/home']);
         })

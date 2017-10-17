@@ -27,11 +27,9 @@ export class UserService {
     }
 
     create(user: User) {
-        console.log('CREATE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('access-control-allow-origin' ,'*');
-        //console.log('CORS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
         return this.http.post('http://localhost:3000/users/signup', user, {headers: headers})
         .map((response: Response) => response.json());
     }
