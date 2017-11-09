@@ -18,6 +18,7 @@ import { environment } from '../environments/environment';
 
 import { HomeService } from './home.service';
 import { UserService } from './services/user.service';
+import { AnswerService } from './services/answer.service';
 import { FilterComponent } from './filter/filter.component';
 import { ProfileComponent } from './profile/profile.component';
 
@@ -60,7 +61,9 @@ export const router: Routes = [
   ],
   providers: [ 
     HomeService,
-    UserService],
+    UserService,
+    AnswerService
+  ],
   bootstrap: [ 
     AppComponent,
     HomeComponent,

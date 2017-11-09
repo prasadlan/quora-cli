@@ -3,7 +3,6 @@ import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { QUESTIONS } from './mock-questions';
 import { Question } from './question';
 
-import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
 @Injectable()
