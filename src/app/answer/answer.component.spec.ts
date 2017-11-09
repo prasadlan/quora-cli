@@ -13,6 +13,7 @@ import { LoginComponent } from '../login/login.component';
 import { HomeComponent } from '../home/home.component';
 import { AnswerComponent } from './answer.component';
 import { HomeService } from '../home.service';
+import { AnswerService } from '../services/answer.service';
 
 describe('AnswerComponent', () => {
   let component: AnswerComponent;
@@ -43,7 +44,7 @@ describe('AnswerComponent', () => {
         ReactiveFormsModule,
         FormsModule
       ],
-      providers: [ HomeService ],
+      providers: [ HomeService, AnswerService ],
     })
     .compileComponents();
   }));

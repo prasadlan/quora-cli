@@ -14,8 +14,9 @@ import { AnswerComponent } from '../answer/answer.component';
 import { HomeService } from '../home.service';
 import { ValidateService } from './validate.service';
 import { UserService } from './user.service';
+import { AnswerService } from './answer.service';
 
-describe('UserService', () => {
+describe('AnswerService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -41,11 +42,11 @@ describe('UserService', () => {
         ReactiveFormsModule,
         FormsModule
       ],
-      providers: [UserService]
+      providers: [AnswerService]
     });
   });
 
-  it('should be created', inject([UserService], (service: UserService) => {
+  it('should be created', inject([AnswerService], (service: AnswerService) => {
     expect(service).toBeTruthy();
   }));
 });

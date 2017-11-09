@@ -3,6 +3,8 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 import { User } from '../models/user';
 
+import 'rxjs/add/operator/toPromise';
+
 @Injectable()
 export class UserService {
     private isUserLoggedIn;
