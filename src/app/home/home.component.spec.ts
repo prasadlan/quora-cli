@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MdButtonModule, MdListModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MatGridListModule, MatInputModule, MdTabsModule, MatExpansionModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from '../app.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { LoginComponent } from '../login/login.component';
 import { AnswerComponent } from '../answer/answer.component';
@@ -39,6 +40,8 @@ describe('HomeComponent', () => {
         MatInputModule,
         MdTabsModule,
         MatExpansionModule,
+        ReactiveFormsModule,
+        FormsModule
       ],
       providers: [ HomeService ],
     })
@@ -55,11 +58,11 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render an Ask Question button', async(() => {
+  it('should render an user profile icon button', async(() => {
     const fixture = TestBed.createComponent(HomeComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('button').textContent).toContain('Ask Question');
+    expect(compiled.querySelector('button').textContent).toContain('account_circle');
   }));
 
   it('should render atleast one card', async(() => {
