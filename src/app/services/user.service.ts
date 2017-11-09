@@ -8,6 +8,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class UserService {
     private isUserLoggedIn;
+    user: any;
+    authToken: any;
     constructor(private http: Http) { 
       this.isUserLoggedIn = false;
     }
@@ -31,14 +33,40 @@ export class UserService {
     create(user: User) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        headers.append('access-control-allow-origin' ,'*');
+        headers.append('access-control-allow-origin', '*');
+        // localStorage.setItem('currentUser', JSON.stringify(user));
+        // console.log(localStorage.getItem('currentUser'));
         return this.http.post('http://localhost:3000/users/signup', user, {headers: headers})
-        .map((response: Response) => response.json());
+        .map((response: Response) => {
+          let user = response.json();
+          console.log(user);
+          if (user.success) {
+              // store user details and jwt token in local storage to keep user logged in between page refreshes
+              localStorage.setItem('currentUser', JSON.stringify(user));
+              console.log(localStorage.getItem('currentUser'));
+            }
+        });
     }
+  
 
-    // update(user: User) {
-    //     return this.http.put('/api/users/' + user, user, this.jwt()).map((response: Response) => response.json());
+    // getProfile() {
+    //   const headers = new Headers();
+    //   this.loadToken();
+    //   headers.append('Authorization', this.authToken);
+    //   headers.append('Content-Type', 'application/json');
+    //   headers.append('access-control-allow-origin', '*');
+    //   return this.http.get('http://localhost:3000/users/profile', { headers: headers })
+    //     .map(res => res.json());
     // }
+  
+    // loadToken() {
+    //   const token = localStorage.getItem('id_token');
+    //   this.authToken = token;
+    // }
+
+    update(user: User) {
+        return this.http.put('/api/users/' + user, user, this.jwt()).map((response: Response) => response.json());
+    }
 
     // delete(user: User) {
     //     return this.http.delete('/api/users/' + user, this.jwt()).map((response: Response) => response.json());
@@ -55,18 +83,22 @@ export class UserService {
             return new RequestOptions({ headers: headers });
         }
     }
+    
 
     loginUser(username: string, password: string) {
-      return this.http.post('/users/authenticate', JSON.stringify({ username: username, password: password }))
+      const headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('access-control-allow-origin', '*');
+      return this.http.post('http://localhost:3000/users/login', JSON.stringify({ username: username, password: password }), { headers: headers })
       .map((response: Response) => {
           // login successful if there's a jwt token in the response
           let user = response.json();
           if (user && user.token) {
               // store user details and jwt token in local storage to keep user logged in between page refreshes
               localStorage.setItem('currentUser', JSON.stringify(user));
-          }
-          return user.successful;
-      }).toPromise();
+              console.log(localStorage.getItem('currentUser'));
+            }
+      });
     }
 
     logout() {

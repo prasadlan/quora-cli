@@ -10,6 +10,7 @@ export class HomeService {
 
   private questionUrl = '/questions';
   private askQnUrl = 'http://localhost:3000/question/ask'
+  // private askQnUrl = '192.168.1.203:3000/question/ask'
 
   constructor(private http: Http) { 
 

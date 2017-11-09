@@ -5,7 +5,7 @@
     <md-grid-list cols="1" rowHeight="4:3">
       <md-grid-tile>
         <md-card>
-        <form [formGroup]="signupform" (ngSubmit)="signupUser(signupform.value)" novalidate>
+        <form [formGroup]="signupform" (ngSubmit)="signupUser(signupform.value)">
           <div>
            <p>
             <md-form-field class="FullName">
@@ -30,10 +30,13 @@
            <p>
             <button md-raised-button color="accent" type="submit" class="custom-button" >Sign Up</button> 
             &nbsp; &nbsp; &nbsp; &nbsp;
-            <button md-raised-button color="accent" routerLink="/" class="custom-button">Cancel</button>
+            <button md-raised-button color="accent" routerLink="/login" class="custom-button">Cancel</button>
           </p>
           </div>
         </form>
+        <!-- <p>
+          <button id="signUpBtn" (click) = "redirect();" md-raised-button color="accent" class="custom-button">Sign Up</button>
+        </p> -->
         </md-card>
       </md-grid-tile>
     </md-grid-list>
