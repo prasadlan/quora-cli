@@ -10,7 +10,8 @@ import 'rxjs/add/operator/map';
 export class HomeService {
 
   private questionUrl = '/questions';
-  private askQnUrl = '/question/add';
+  private askQnUrl = 'http://localhost:3000/question/ask'
+  // private askQnUrl = '192.168.1.203:3000/question/ask'
 
   constructor(private http: Http) { 
 
@@ -32,9 +33,18 @@ export class HomeService {
   }
 
   askQuestion(question: string) {
-    let header = new Headers({ 'Content-Type': 'application/json' });
+    const header = new Headers({ 'Content-Type': 'application/json' });
+    header.append('access-control-allow-origin' ,'*');
     let options = new RequestOptions({ headers: header });
-    return this.http.post(this.askQnUrl, question, options)
+    let user_id = JSON.parse(localStorage.getItem('currentUser')).user.id;
+    let is_anonymous = false; // Hardcoded. Value needs to be fetched.
+    
+    let questionobj = {
+      user_id: user_id,
+      is_anonymous: is_anonymous,
+      name: question
+    }
+    return this.http.post(this.askQnUrl, questionobj, options)
                     .map(response => response.json())
   }
 

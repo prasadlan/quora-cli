@@ -6,20 +6,24 @@
     <a routerLink="/home" class="doc-button mat-button" routerLinkActive="" href="/home">Home</a>
     <a routerLink="/answers" class="doc-button mat-button" routerLinkActive="" href="/answers">Answers</a>
     <a routerLink="/notifications" class="doc-button mat-button" routerLinkActive="" href="/notifications">Notifications</a>
-    <md-icon mdPrefix><i class="material-icons">search</i></md-icon>
-    <a><input type="text" mdInput placeholder="Search Quora"></a>
     <span class="fill-space"></span>
-    <span><button md-button [mdMenuTriggerFor]="menu">
+    <a routerLink="/" routerLinkActive=""></a>
+  </nav>
+      <md-icon mdPrefix style="margin-left:10px;"><i class="material-icons">search</i></md-icon>
+      <input type="text" mdInput placeholder="Search Quora">
+      <button class="doc-button mat-button" (click)="onSubmit(searchTerm.value)" color="primary" type="submit" id="searchBtn">GO!</button>
+    <span>
+      <button md-button [mdMenuTriggerFor]="menu">
       <md-icon><i class="material-icons">account_circle</i></md-icon>
       <md-menu #menu="mdMenu" [overlapTrigger]="false">
         <a md-menu-item routerLink="/profile" class="doc-button mat-button" routerLinkActive="" href="/profile">Profile</a>
         <a md-menu-item routerLink="/login" class="doc-button mat-button" href="/login">Logout</a>
       </md-menu>
       </button>
-      </span>
-    <!-- <a routerLink="/" routerLinkActive=""></a> -->
-  </nav>
-  <!-- <router-outlet></router-outlet> -->
+    </span>
+  
+  
+  <router-outlet></router-outlet>
 </md-toolbar>
 
 <md-grid-list cols="8" rowHeight="2:1"> 
@@ -39,11 +43,11 @@
   <div class="centre">
   <md-grid-tile colspan="4">
     <md-card>
-      <form [formGroup]="askQuestion" class="ask-question">
+      <form [formGroup]="askquestionform" (ngSubmit)="askQuestion(askquestionform.value)" class="ask-question">
         <md-form-field class="form-element-width">
-          <textarea mdInput placeholder="What is your question?"></textarea>
+          <textarea mdInput formControlName="question" [(ngModel)]="question" placeholder="What is your question?"></textarea>
         </md-form-field>
-        <md-card-actions> <button md-button class="custom-button">Ask Question</button> </md-card-actions>
+        <md-card-actions> <button md-button type="submit" class="custom-button">Ask Question</button> </md-card-actions>
       </form>
     </md-card>
     <md-card *ngFor="let question of questions"> 

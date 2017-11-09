@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { MdButtonModule, MdListModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MatGridListModule, MatInputModule, MdTabsModule, MatExpansionModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -52,6 +52,7 @@ export const router: Routes = [
     MdTabsModule,
     MatExpansionModule,
     ReactiveFormsModule,
+    FormsModule,
     RouterModule.forRoot(
       router
       // { enableTracing: true } // <-- debugging purposes only
@@ -61,11 +62,11 @@ export const router: Routes = [
     HomeService,
     UserService],
   bootstrap: [ 
-    AppComponent
-    // HomeComponent,
-    // LoginComponent,
-    // AnswerComponent,
-    // ProfileComponent
+    AppComponent,
+    HomeComponent,
+    LoginComponent,
+    AnswerComponent,
+    ProfileComponent
   ]
 })
 export class AppModule { }

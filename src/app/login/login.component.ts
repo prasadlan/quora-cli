@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   signupform: FormGroup;
   signinform: FormGroup;
   signinUser = new User();
+  errorMsg = '';
   model: any = {};
   constructor(private fb: FormBuilder, private router: Router, private user: UserService) { 
     this.signupform = fb.group({
@@ -43,16 +44,18 @@ export class LoginComponent implements OnInit {
     this.signinUser.username = username;
     this.signinUser.password = password;
     this.user.loginUser(username, password)
-      .then(status => {
-        console.log(status);
-        if(status) {
-          this.router.navigate(['home']);
+      .subscribe(status => {
+        // console.log(status);
+        // if(status) {
+        //   console.log(status);
           this.user.setUserLoggedIn();
-        }
-        else {
-          this.router.navigate(['']);
-        }
-      }).catch(err => console.log(err));
+
+          this.router.navigate(['home']);
+        // }
+        // else {
+        //   this.router.navigate(['login']);
+        // }
+      })
     }
 
     @Output() createNewUserEvent = new EventEmitter();

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../home.service';
 import { Question } from '../question';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +12,12 @@ import { Question } from '../question';
 export class HomeComponent implements OnInit {
   questions: Question[];
   statusMessage: string;
+  askquestionform: FormGroup;
 
-  constructor(private _homeService:HomeService) {
-
+  constructor(private fb: FormBuilder, private router: Router, private home: HomeService) {
+    this.askquestionform = fb.group({
+      'question': ['']
+    });
   }
 
   ngOnInit() {
@@ -20,14 +25,14 @@ export class HomeComponent implements OnInit {
   }
 
   getQuestions(): void {
-    this.questions = this._homeService.getQuestions(); 
+    this.questions = this.home.getQuestions(); 
   }
 
-  askQuestion(question: string): void {
-    this._homeService.askQuestion(question)
-                      .subscribe((res: Response) => {
-                        this.statusMessage = 'Question posted successfully';
-                      });
+  askQuestion(value): void {
+    this.home.askQuestion(value.question)
+      .subscribe((res: Response) => {
+        this.statusMessage = 'Question posted successfully';
+      });
   }
 
 }
