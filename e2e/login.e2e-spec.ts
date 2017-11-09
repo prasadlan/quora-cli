@@ -30,7 +30,7 @@ describe('Quora App', () => {
   });
 
   it('should fill in the signup form', () => {
-    page.navigateTo('/');
+    page.navigateTo('/login');
 
     let fullname = page.getFullNameInput();
     let username = page.getUserNameInput();

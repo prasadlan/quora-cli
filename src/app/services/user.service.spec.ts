@@ -12,7 +12,6 @@ import { LoginComponent } from '../login/login.component';
 import { HomeComponent } from '../home/home.component';
 import { AnswerComponent } from '../answer/answer.component';
 import { HomeService } from '../home.service';
-import { ValidateService } from './validate.service';
 import { UserService } from './user.service';
 
 describe('UserService', () => {
