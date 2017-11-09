@@ -70,3 +70,7 @@ md-card-subtitle{
 md-toolbar{
     background: #b92b27!important;
 }
+
+.post-answer{
+    display: none;
+}
