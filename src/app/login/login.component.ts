@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser(e) {
-  	e.preventDefault();
   	console.log(e);
   	const username = e.username;
   	const password = e.password;

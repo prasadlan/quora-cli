@@ -55,14 +55,19 @@ export class UserService {
     }
 
     loginUser(username: string, password: string) {
-      return this.http.post('/users/authenticate', JSON.stringify({ username: username, password: password }))
+      return this.http.post('/users/login', JSON.stringify({ username: username, password: password }))
       .map((response: Response) => {
           // login successful if there's a jwt token in the response
+          console.log(username);
+          console.log(password);
           let user = response.json();
+          console.log(user);
+          console.log(user.token);
           if (user && user.token) {
               // store user details and jwt token in local storage to keep user logged in between page refreshes
               localStorage.setItem('currentUser', JSON.stringify(user));
           }
+          console.log(user.successful);
           return user.successful;
       }).toPromise();
     }

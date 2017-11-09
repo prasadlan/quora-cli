@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 export class HomeService {
 
   private questionUrl = '/questions';
-  private askQnUrl = '/question/add'
+  private askQnUrl = '/question/add';
 
   constructor(private http: Http) { 
 

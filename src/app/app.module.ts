@@ -23,8 +23,10 @@ import { ProfileComponent } from './profile/profile.component';
 
 export const router: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: '', component: LoginComponent },
-  { path: 'answers', component: AnswerComponent}
+  { path: 'login', component: LoginComponent },
+  { path: 'answers', component: AnswerComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' }
    ];
 
 @NgModule({
@@ -51,18 +53,19 @@ export const router: Routes = [
     MatExpansionModule,
     ReactiveFormsModule,
     RouterModule.forRoot(
-      router,
-      { enableTracing: true } // <-- debugging purposes only
+      router
+      // { enableTracing: true } // <-- debugging purposes only
     )
   ],
   providers: [ 
     HomeService,
     UserService],
   bootstrap: [ 
-    AppComponent,
-    HomeComponent,
-    LoginComponent,
-    AnswerComponent
+    AppComponent
+    // HomeComponent,
+    // LoginComponent,
+    // AnswerComponent,
+    // ProfileComponent
   ]
 })
 export class AppModule { }
