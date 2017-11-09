@@ -5,26 +5,26 @@
     <md-grid-list cols="1" rowHeight="4:3">
       <md-grid-tile>
         <md-card>
-        <form [formGroup]="signupform" (ngSubmit)="signupUser(signupform.value)">
+        <form [formGroup]="signupform" (ngSubmit)="signupUser(signupform.value)" novalidate>
           <div>
            <p>
             <md-form-field class="FullName">
-              <input mdInput placeholder="Full Name" formControlName="name" value="">
+              <input mdInput placeholder="Full Name" formControlName="name" value="" [(ngModel)]="name" required>
             </md-form-field>
            </p>
            <p>
             <md-form-field class="UserName">
-              <input mdInput placeholder="Username" formControlName="username" value="">
+              <input mdInput placeholder="Username" formControlName="username" value="" [(ngModel)]="username" required>
             </md-form-field>
            </p>
            <p>
             <md-form-field class="Email">
-             <input mdInput placeholder="Email" formControlName="email" value="">
+             <input mdInput placeholder="Email" formControlName="email" value="" [(ngModel)]="email" required>
             </md-form-field>
            </p>
            <p>
             <md-form-field class="Password">
-              <input mdInput type="password" placeholder="Password" formControlName="password" value="">
+              <input mdInput type="password" placeholder="Password" formControlName="password" value="" [(ngModel)]="password" required>
             </md-form-field>
            </p>
            <p>
@@ -34,6 +34,9 @@
           </p>
           </div>
         </form>
+        <!-- <p>
+          <button id="signUpBtn" (click) = "redirect();" md-raised-button color="accent" class="custom-button">Sign Up</button>
+        </p> -->
         </md-card>
       </md-grid-tile>
     </md-grid-list>
@@ -46,12 +49,12 @@
             <div>
            <p>
             <md-form-field class="UserName">
-              <input mdInput placeholder="Username" formControlName="username" value="">
+              <input mdInput placeholder="Username" formControlName="username" value="" [(ngModel)]="username" required>
             </md-form-field>
            </p>
            <p>
             <md-form-field class="Password">
-              <input mdInput type="password" placeholder="Password" formControlName="password" value="">
+              <input mdInput type="password" placeholder="Password" formControlName="password" value="" [(ngModel)]="password" required>
             </md-form-field>
            </p>
            <p>

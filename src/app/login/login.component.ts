@@ -2,7 +2,8 @@ import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../user';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 @Component({
   selector: 'app-login',

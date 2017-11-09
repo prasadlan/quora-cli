@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { HomeService } from './home.service';
 import { UserService } from './services/user.service';
 import { FilterComponent } from './filter/filter.component';
+import { ProfileComponent } from './profile/profile.component';
 
 export const router: Routes = [
   { path: 'home', component: HomeComponent },
@@ -32,7 +33,8 @@ export const router: Routes = [
     LoginComponent,
     HomeComponent,
     AnswerComponent,
-    FilterComponent
+    FilterComponent,
+    ProfileComponent
   ],
   imports: [
     HttpModule,
