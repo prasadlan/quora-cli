@@ -14,7 +14,7 @@ browser.driver.controlFlow().execute = function() {
 };
 
 export class LoginPage {
-    navigateTo(path = '/') {
+    navigateTo(path = '/login') {
         return browser.get(path);
     }
 
