@@ -1,4 +1,31 @@
-<div *ngIf=user>
+<md-toolbar color="primary">
+    <span style="margin-right:25px;">Quora</span>
+      
+    <nav>
+      <a routerLink="/home" class="doc-button mat-button" routerLinkActive="" href="/home">Home</a>
+      <a routerLink="/answers" class="doc-button mat-button" routerLinkActive="" href="/answers">Answers</a>
+      <a routerLink="/notifications" class="doc-button mat-button" routerLinkActive="" href="/notifications">Notifications</a>
+      <span class="fill-space"></span>
+      <a routerLink="/" routerLinkActive=""></a>
+    </nav>
+        <md-icon mdPrefix style="margin-left:10px;"><i class="material-icons">search</i></md-icon>
+        <input type="text" mdInput placeholder="Search Quora">
+        <button class="doc-button mat-button" (click)="onSubmit(searchTerm.value)" color="primary" type="submit" id="searchBtn">GO!</button>
+      <span>
+        <button md-button [mdMenuTriggerFor]="menu">
+        <md-icon><i class="material-icons">account_circle</i></md-icon>
+        <md-menu #menu="mdMenu" [overlapTrigger]="false">
+          <a md-menu-item routerLink="/profile" class="doc-button mat-button" routerLinkActive="" href="/profile">Profile</a>
+          <a md-menu-item routerLink="/login" class="doc-button mat-button" href="/login">Logout</a>
+        </md-menu>
+        </button>
+      </span>
+    
+    
+    <router-outlet></router-outlet>
+  </md-toolbar>
+
+  <div *ngIf=user>
     <h2 class='page-header'>{{user.name}}</h2>
     <ul class='list-group'>
       <li class='list-group-item'>Username: {{user.username}}</li>

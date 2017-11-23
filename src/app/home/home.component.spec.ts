@@ -62,7 +62,7 @@ describe('HomeComponent', () => {
     const fixture = TestBed.createComponent(HomeComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('button').textContent).toContain('account_circle');
+    expect(compiled.querySelector('button').textContent).toContain('GO!');
   }));
 
   it('should render atleast one card', async(() => {
