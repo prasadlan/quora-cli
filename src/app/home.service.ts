@@ -8,22 +8,22 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class HomeService {
 
-  private questionUrl = '/questions';
-  private askQnUrl = 'http://localhost:3000/question/ask'
-  // private askQnUrl = '192.168.1.203:3000/question/ask'
+  private questionUrl = 'http://localhost:3000/question/getAll';
+  private askQnUrl = 'http://localhost:3000/question/ask';
+  private upvoteUrl = 'http://localhost:3000/question/upvote';
+  private saveAnswerUrl = 'http://localhost:3000/answer/put';
 
   constructor(private http: Http) { 
 
   }
 
-  getQuestions(): Question[] {
-    return QUESTIONS;
-  }
-
-  // getQuestions() {
-  //   return this.http.get(this.questionUrl)
-  //                   .map(response => response.json())
+  // getQuestions(): Question[] {
+  //   return QUESTIONS;
   // }
+
+  getQuestions() {
+    return this.http.get(this.questionUrl).map(data => data.json()).toPromise();
+  }
 
   getQuestionsByCategory(id: number) {
     const url = `${this.questionUrl}/${id}`;
@@ -44,7 +44,7 @@ export class HomeService {
       name: question
     }
     return this.http.post(this.askQnUrl, questionobj, options)
-                    .map(response => response.json())
+                    .map(response => response.json()).toPromise();
   }
 
   
