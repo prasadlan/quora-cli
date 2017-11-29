@@ -14,6 +14,7 @@ import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angula
 export class AnswerComponent implements OnInit {
   questions: any = {};
   answerform: FormGroup;
+  mdata: any = {};
 
   constructor(private fb: FormBuilder, private router: Router, private home:HomeService, private answerService:AnswerService) {
     this.answerform = fb.group({
@@ -52,10 +53,10 @@ export class AnswerComponent implements OnInit {
     console.log(this.questions); 
   } 
 
-  postAnswer(value) {
+  postAnswer(value, question_id) {
     let obj = {
       name: value.answer,
-      question_id: value.question_id,
+      question_id: question_id,
       is_anonymous: false
     }
     console.log(obj);

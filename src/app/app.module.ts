@@ -65,11 +65,7 @@ export const router: Routes = [
     AnswerService
   ],
   bootstrap: [ 
-    AppComponent,
-    HomeComponent,
-    LoginComponent,
-    AnswerComponent,
-    ProfileComponent
+    AppComponent
   ]
 })
 export class AppModule { }
