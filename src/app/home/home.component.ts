@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angula
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  questions: Question[];
+  questions: any = {};
   statusMessage: string;
   askquestionform: FormGroup;
 
@@ -24,13 +24,23 @@ export class HomeComponent implements OnInit {
     this.getQuestions();
   }
 
-  getQuestions(): void {
-    this.questions = this.home.getQuestions(); 
+  getQuestions() {
+    this.home.getQuestions().then(data => {
+      console.log(data);
+      if(data.success == true){
+        this.questions = data.body;
+
+      } else{
+        console.log("not success");
+      }
+    });
+    console.log(this.questions); 
   }
 
   askQuestion(value): void {
     this.home.askQuestion(value.question)
-      .subscribe((res: Response) => {
+      .then(data => {
+        console.log("saved !"); 
         this.statusMessage = 'Question posted successfully';
       });
   }
