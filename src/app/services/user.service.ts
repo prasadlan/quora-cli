@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-
+import { Observable } from 'rxjs/Rx';
 import { User } from '../models/user';
 
 import 'rxjs/add/operator/toPromise';
@@ -48,7 +48,7 @@ export class UserService {
         });
     }
   
-
+    
     // getProfile() {
     //   const headers = new Headers();
     //   this.loadToken();
@@ -105,4 +105,15 @@ export class UserService {
       // remove user from local storage to log user out
       localStorage.removeItem('currentUser');
   }
+
+    getUserInfoForProfile(username: string) {
+      const headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('access-control-allow-origin', '*');
+      return this.http.get('http://localhost:3000/username/'+{username}, {headers : headers})
+        .map((response: Response) => {
+           console.log(response);
+           console.log("Got user info successfully!");
+        });
+    }
 }

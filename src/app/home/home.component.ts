@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   questions: any = {};
   statusMessage: string;
   askquestionform: FormGroup;
-
+  
   constructor(private fb: FormBuilder, private router: Router, private home: HomeService) {
     this.askquestionform = fb.group({
       'question': ['']
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     this.home.getQuestions().then(data => {
       console.log(data);
       if(data.success == true){
-        this.questions = data.body;
+        this.questions = data.body
 
       } else{
         console.log("not success");
