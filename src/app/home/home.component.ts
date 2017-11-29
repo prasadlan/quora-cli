@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
     this.homeService.getQuestions().then(data => {
       console.log(data);
       if(data.success == true){
-        this.questions = data.body;
+        this.questions = data.body
 
       } else{
         console.log("not success");
