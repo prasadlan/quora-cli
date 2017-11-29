@@ -52,10 +52,17 @@
     </md-card>
     <md-card *ngFor="let question of questions"> 
       <md-card-title> {{question.question}} </md-card-title> 
-      <md-card-subtitle> <span style="margin-right:25px;">{{question.user}}</span><span>Answered {{question.date}}</span> </md-card-subtitle> 
-      <md-card-content> {{question.answer}} </md-card-content> 
-      <md-card-actions> <button md-button class="vote-button">Upvote</button> <button md-button class="vote-button">Downvote</button> </md-card-actions> 
+      <md-card-subtitle> <span style="margin-right:25px;">{{question.user}}</span>
+        <!-- <span>Answered {{question.date}}</span>  -->
+      </md-card-subtitle> 
+      <!-- <md-card-content> {{question.answer}} </md-card-content> 
+      <md-card-actions> <button md-button class="vote-button">Upvote</button> <button md-button class="vote-button">Downvote</button> </md-card-actions>  -->
+      <md-card *ngFor= "let a1 of question.answers">
+        <md-card-title> {{a1.answer}} </md-card-title> 
+        <md-card-subtitle> <span style="margin-right:25px;">{{a1.user}}</span><span>Answered {{a1.created_on}}</span> </md-card-subtitle> 
+      </md-card>
     </md-card>
+    
   </md-grid-tile>
   </div>
   <div class="right">

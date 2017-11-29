@@ -42,6 +42,8 @@ export class HomeComponent implements OnInit {
       .then(data => {
         console.log("saved !"); 
         this.statusMessage = 'Question posted successfully';
+        this.askquestionform.reset();
+        this.getQuestions();
       });
   }
 
