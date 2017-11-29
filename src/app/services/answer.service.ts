@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AnswerService {
 
-  private saveAnswerUrl = 'http://localhost:3000/answer/put'
+  private saveAnswerUrl = 'http://localhost:3000/answer/put';
 
   constructor(private http: Http) { }
 
@@ -17,7 +17,7 @@ export class AnswerService {
     let user_id = JSON.parse(localStorage.getItem('currentUser')).user.id;
     
     answerobj['user_id'] = user_id;
-    return this.http.post(this.saveAnswerUrl, answerobj, options)
-            .map(response => response.json())
+    console.log(answerobj);
+    return this.http.post(this.saveAnswerUrl, answerobj, options).map(data => data.json()).toPromise();
   }
 }
