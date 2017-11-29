@@ -34,6 +34,11 @@ md-card-content{
     margin: 20px 25px 0 200px;
 }
 
+.left-bottom{
+    width: 200px;
+    margin: 20px 50px 0 200px;
+    padding-top: 170px;
+}
 .centre{
     float: left;
     width: 600px;
@@ -60,7 +65,7 @@ md-card-content{
 
 .search-box {
     min-width: 150px;
-    max-width: 300px;
+    max-width: 500px;
     width: 100%;
   }
   
@@ -88,3 +93,22 @@ md-card-title{
 md-toolbar{
     background: #b92b27!important;
 }
+
+.user {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  
+    object-fit: cover;
+  }
+  
+  .img-holder {
+      position: absolute;
+      left: 200px;
+  }
+
+  .child {
+      position: relative;
+      left: 30px;
+  }
