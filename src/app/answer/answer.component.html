@@ -40,7 +40,10 @@
   <md-grid-tile colspan="4">
     <md-card *ngFor="let question of questions"> 
       <md-card-title> {{question.question}} </md-card-title> 
-      <md-card-subtitle> <span style="margin-right:25px;">Last followed 30m ago</span><span>100 answers</span> </md-card-subtitle> 
+      <md-card-subtitle> 
+        <!-- <span style="margin-right:25px;">Last followed 30m ago</span> -->
+        <!-- <span>100 answers</span>  -->
+      </md-card-subtitle> 
       <md-card-content>  </md-card-content> 
       <md-card-actions> <button md-button class="answer-button vote-button" (click)="toggleAnswerDialog($event);">Answer</button> <button md-button class="vote-button">Pass</button> <button md-button class="vote-button">Follow</button> <button md-button class="vote-button">Downvote</button> </md-card-actions>
       <form [formGroup]="answerform" (ngSubmit)="postAnswer(answerform.value, question._id)" class="post-answer">
@@ -48,10 +51,7 @@
           <textarea mdInput formControlName="answer" [(ngModel)]="answer" placeholder="Your answer here"></textarea>
         </md-form-field>
         <md-card-actions> <button md-button type="submit" type="submit" class="custom-button">Submit Answer</button> </md-card-actions>
-      </form> 
-    </md-card>
-    <md-card>
-      
+      </form>       
     </md-card>
   </md-grid-tile>
   </div>

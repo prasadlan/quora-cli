@@ -42,7 +42,7 @@ export class AnswerComponent implements OnInit {
   }
 
   getQuestions() {
-    this.home.getQuestions().then(data => {
+    this.home.getUnansweredQuestionUrl().then(data => {
       if(data.success == true){
         this.questions = data.body;
 
@@ -54,19 +54,8 @@ export class AnswerComponent implements OnInit {
   } 
 
   postAnswer(value, question_id) {
-    let obj = {
-      name: value.answer,
-      question_id: question_id,
-      is_anonymous: false
-    }
-    console.log(obj);
-    this.answerService.saveAnswer(obj).then(data => {
-      if(data.success == true){
-        console.log("Answer saved !");
-      } else{
-        console.log("Answer not saved !");
-      }
-    });
+    this.answerService.postAnswer(value, question_id);
+    this.getQuestions();
   }
 
 }
