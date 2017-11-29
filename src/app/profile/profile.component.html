@@ -1,34 +1,125 @@
 <md-toolbar color="primary">
-    <span style="margin-right:25px;">Quora</span>
-      
-    <nav>
-      <a routerLink="/home" class="doc-button mat-button" routerLinkActive="" href="/home">Home</a>
-      <a routerLink="/answers" class="doc-button mat-button" routerLinkActive="" href="/answers">Answers</a>
-      <a routerLink="/notifications" class="doc-button mat-button" routerLinkActive="" href="/notifications">Notifications</a>
-      <span class="fill-space"></span>
-      <a routerLink="/" routerLinkActive=""></a>
-    </nav>
-        <md-icon mdPrefix style="margin-left:10px;"><i class="material-icons">search</i></md-icon>
-        <input type="text" mdInput placeholder="Search Quora">
-        <button class="doc-button mat-button" (click)="onSubmit(searchTerm.value)" color="primary" type="submit" id="searchBtn">GO!</button>
-      <span>
-        <button md-button [mdMenuTriggerFor]="menu">
-        <md-icon><i class="material-icons">account_circle</i></md-icon>
-        <md-menu #menu="mdMenu" [overlapTrigger]="false">
-          <a md-menu-item routerLink="/profile" class="doc-button mat-button" routerLinkActive="" href="/profile">Profile</a>
-          <a md-menu-item routerLink="/login" class="doc-button mat-button" href="/login">Logout</a>
-        </md-menu>
-        </button>
-      </span>
+  <span style="margin-right:25px;">Quora</span>
     
-    
-    <router-outlet></router-outlet>
-  </md-toolbar>
+  <nav>
+    <a routerLink="/home" class="doc-button mat-button" routerLinkActive="" href="/home">Home</a>
+    <a routerLink="/answers" class="doc-button mat-button" routerLinkActive="" href="/answers">Answers</a>
+    <a routerLink="/notifications" class="doc-button mat-button" routerLinkActive="" href="/notifications">Notifications</a>
+    <span class="fill-space"></span>
+    <a routerLink="/" routerLinkActive=""></a>
+  </nav>
+      <md-icon mdPrefix style="margin-left:10px;"><i class="material-icons">search</i></md-icon>
+      <input type="text" mdInput placeholder="Search Quora">
+      <button class="doc-button mat-button" (click)="onSubmit(searchTerm.value)" color="primary" type="submit" id="searchBtn">GO!</button>
+    <span>
+      <button md-button [mdMenuTriggerFor]="menu">
+      <md-icon><i class="material-icons">account_circle</i></md-icon>
+      <md-menu #menu="mdMenu" [overlapTrigger]="false">
+        <a md-menu-item routerLink="/profile" class="doc-button mat-button" routerLinkActive="" href="/profile">Profile</a>
+        <a md-menu-item routerLink="/login" class="doc-button mat-button" href="/login">Logout</a>
+      </md-menu>
+      </button>
+    </span>
+  
+  
+  <router-outlet></router-outlet>
+</md-toolbar>
 
-  <div *ngIf=user>
-    <h2 class='page-header'>{{user.name}}</h2>
-    <ul class='list-group'>
-      <li class='list-group-item'>Username: {{user.username}}</li>
-      <li class='list-group-item'>Email: {{user.email}}</li>
-    </ul>
-  </div>
+  <!-- <div class="w3-card-2 w3-round w3-white">
+    <div class="w3-container">
+      <h4 class="w3-center"></h4>
+      <div class="image-upload">
+       <p class="w3-center"><img for='file-input' [src]="url" class="w3-circle" style="height:106px;width:106px" alt="Avatar"><br/>
+       <input type='file' (change)="onSelectFile($event)"></p>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- <div class="profile-page">
+    
+      <div class="user-info">
+        <div class="container">
+          <div class="row">
+    
+            <div class="col-xs-12 col-md-10 offset-md-1">
+              <img [src]="profile.image" class="user-img" />
+              <h4>{{ profile.username }}</h4>
+              <p>{{ profile.bio }}</p>
+              <follow-button
+                [hidden]="isUser"
+                [profile]="profile"
+                (onToggle)="onToggleFollowing($event)">
+              </follow-button>
+               <a [routerLink]="['/settings']"
+                  [hidden]="!isUser"
+                  class="btn btn-sm btn-outline-secondary action-btn">
+                  <i class="ion-gear-a"></i> Edit Profile Settings
+                </a>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+    
+      <div class="container">
+        <div class="row">
+    
+          <div class="col-xs-12 col-md-10 offset-md-1">
+            <div class="articles-toggle">
+              <ul class="nav nav-pills outline-active">
+                <li class="nav-item">
+                  <a class="nav-link"
+                     routerLinkActive="active"
+                     [routerLinkActiveOptions]="{ exact: true }"
+                     [routerLink]="['/profile', profile.username]">
+                     My Posts
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link"
+                     routerLinkActive="active"
+                     [routerLinkActiveOptions]="{ exact: true }"
+                     [routerLink]="['/profile', profile.username, 'favorites']">
+                     Favorited Posts
+                  </a>
+                </li>
+              </ul>
+            </div>
+    
+            <router-outlet></router-outlet>
+          </div>
+    
+        </div>
+      </div>
+    
+    </div> -->
+    <md-grid-list cols="2" rowHeight="2:1">
+        <div class="left">
+          <md-grid-tile colspan="2">
+            <div class="img-holder">
+              <img src="./assets/LinkedInCover.jpg" class="user">
+              <br>
+              <div class="child">
+                  <input type="file" id="avatar" (change)="uploadImg($event)" #fileInput accept="image/jpeg, image/png, image/jpg">
+              </div>
+            </div>
+          </md-grid-tile>
+        </div>
+        <div class="centre">
+            <md-grid-tile colspan="4">
+              <md-card>
+               <h1>{{User.name}}</h1>
+              </md-card>
+            </md-grid-tile>
+        </div>
+        <div class="left-bottom">
+          <md-grid-tile>
+              <md-nav-list>
+                  <a class="custom-list-item md-item-list-selected" md-list-item href="#"> Activity </a>
+                  <a class="custom-list-item" md-list-item href="#"> Following </a>
+                  <a class="custom-list-item" md-list-item href="#"> Followers </a>
+                  <a class="custom-list-item" md-list-item href="#"> Topics </a>
+                </md-nav-list>
+          </md-grid-tile>
+        </div>
+    </md-grid-list>
