@@ -31,12 +31,12 @@ md-card-content{
 .left{
     float: left;
     width: 200px;
-    margin: 20px 25px 0 200px;
+    margin: 30px 25px 0 400px;
 }
 
 .centre{
     float: left;
-    width: 600px;
+    width: 650px;
     padding-top: 30px;
 }
 
