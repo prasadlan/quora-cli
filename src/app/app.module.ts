@@ -68,11 +68,7 @@ export const router: Routes = [
     // MediaService
   ],
   bootstrap: [ 
-    AppComponent,
-    HomeComponent,
-    LoginComponent,
-    AnswerComponent,
-    ProfileComponent
+    AppComponent
   ]
 })
 export class AppModule { }
