@@ -28,8 +28,7 @@ export class HomeComponent implements OnInit {
     this.home.getQuestions().then(data => {
       console.log(data);
       if(data.success == true){
-        this.questions = data.body
-
+        this.questions = data.json()
       } else{
         console.log("not success");
       }

@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { MdButtonModule, MdAutocompleteModule, MdListModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MatGridListModule, MatInputModule, MdTabsModule, MatExpansionModule } from '@angular/material';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -28,7 +28,7 @@ export const router: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'answers', component: AnswerComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
    ];
 
 @NgModule({
@@ -43,7 +43,7 @@ export const router: Routes = [
   imports: [
     HttpModule,
     BrowserModule,
-    // BrowserAnimationsModule,
+    BrowserAnimationsModule,
     MdAutocompleteModule,
     MdButtonModule,
     MdListModule,
