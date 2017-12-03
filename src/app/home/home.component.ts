@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   questions: any = {};
   statusMessage: string;
   askquestionform: FormGroup;
+  id: string;
   
   constructor(private fb: FormBuilder, private router: Router, private home: HomeService) {
     this.askquestionform = fb.group({
@@ -26,7 +27,8 @@ export class HomeComponent implements OnInit {
 
   getQuestions() {
     this.home.getQuestions().then(data => {
-      console.log(data);
+      var body = JSON.stringify(data.body);
+      console.log('Questions obtained from backend: '+ body);
       if(data.success == true){
         this.questions = data.body
 
@@ -36,6 +38,7 @@ export class HomeComponent implements OnInit {
     });
     console.log(this.questions); 
   }
+
 
   askQuestion(value): void {
     this.home.askQuestion(value.question)
