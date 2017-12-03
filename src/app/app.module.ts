@@ -31,7 +31,8 @@ export const router: Routes = [
   { path: 'answers', component: AnswerComponent },
   { path: 'profile', component: ProfileComponent },
   {path: 'question/:question', component: QuestionComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
+
    ];
 
 @NgModule({
@@ -72,11 +73,7 @@ export const router: Routes = [
     // MediaService
   ],
   bootstrap: [ 
-    AppComponent,
-    HomeComponent,
-    LoginComponent,
-    AnswerComponent,
-    ProfileComponent
+    AppComponent
   ]
 })
 export class AppModule { }

@@ -50,6 +50,7 @@
         <md-card-actions> <button md-button type="submit" class="custom-button">Ask Question</button> </md-card-actions>
       </form>
     </md-card>
+    
     <md-card *ngFor="let question of questions"> 
       <md-card-title> 
         <a class="custom-list-item" md-list-item routerLink="/question/{{ question._id }}" routerLinkActive="active"> {{question.question}}  </a>
@@ -57,11 +58,19 @@
       <md-card-subtitle> <span style="margin-right:25px;">{{question.user}}</span>
         <!-- <span>Answered {{question.date}}</span>  -->
       </md-card-subtitle> 
+
+      <!-- <form [formGroup]="answerformQ" (ngSubmit)="postAnswer(answerformQ.value, question._id)" class="post-answer">
+        <md-form-field class="form-element-width">
+          <textarea mdInput formControlName="answerQ" [(ngModel)]="answerQ" placeholder="Your answer here"></textarea>
+        </md-form-field>
+        <md-card-actions> <button md-button type="submit" type="submit" class="custom-button">Submit Answer</button> </md-card-actions>
+      </form> -->
+
       <!-- <md-card-content> {{question.answer}} </md-card-content> 
       <md-card-actions> <button md-button class="vote-button">Upvote</button> <button md-button class="vote-button">Downvote</button> </md-card-actions>  -->
       <md-card *ngFor= "let a1 of question.answers">
         <md-card-title> {{a1.answer}} </md-card-title> 
-        <md-card-subtitle> <span style="margin-right:25px;">{{a1.user}}</span><span>Answered {{a1.created_on}}</span> </md-card-subtitle> 
+        <md-card-subtitle> <span style="margin-right:25px;">{{a1.user.username}} answered on {{a1.created_on}}</span> </md-card-subtitle> 
       </md-card>
     </md-card>
     

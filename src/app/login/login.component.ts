@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
         // else {
         //   this.router.navigate(['login']);
         // }
-      })
+      });
     }
 
     @Output() createNewUserEvent = new EventEmitter();
@@ -65,13 +65,13 @@ export class LoginComponent implements OnInit {
         email: value.email,
         username: value.username,
         password: value.password
-      };
+      }
       console.log(this.signinUser);
       this.user.create(signinuser)
         .subscribe(status => {
           //localStorage.setItem('currentUser', JSON.stringify(this.signinUser));
           this.user.setUserLoggedIn();
           this.router.navigate(['home']);
-        })
+        });
     }
 }

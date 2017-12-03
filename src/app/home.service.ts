@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class HomeService {
 
+  private unansweredQuestionUrl = 'http://localhost:3000/question/getUnanswered';
   private questionUrl = 'http://localhost:3000/question/getAll';
   private askQnUrl = 'http://localhost:3000/question/ask';
   private upvoteUrl = 'http://localhost:3000/question/upvote';
@@ -17,9 +18,9 @@ export class HomeService {
 
   }
 
-  // getQuestions(): Question[] {
-  //   return QUESTIONS;
-  // }
+  getUnansweredQuestionUrl() {
+    return this.http.get(this.unansweredQuestionUrl).map(data => data.json()).toPromise();
+  }
 
   getQuestions() {
     return this.http.get(this.questionUrl).map(data => data.json()).toPromise();
