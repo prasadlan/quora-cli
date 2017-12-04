@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   private readonly INDEX = 'testquestions';
   private readonly TYPE = 'question';
 
-  constructor(private userService: UserService, private cd: ChangeDetectorRef, private fb: FormBuilder, private router: Router, private home: HomeService) {
+  constructor(private userService: UserService, private cd: ChangeDetectorRef, private fb: FormBuilder, private router: Router, private homeService: HomeService) {
     this.askquestionform = fb.group({
       'question': ['']
     });
@@ -78,7 +78,7 @@ export class HomeComponent implements OnInit {
     
         this.searchTerm = '';
 
-        this.home.getSearch(searchTerm).then(data => {
+        this.homeService.getSearch(searchTerm).then(data => {
           console.log(data);
           if(data.sucess){
             this.questionResults = data.body
