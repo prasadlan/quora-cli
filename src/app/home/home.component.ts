@@ -109,4 +109,7 @@ export class HomeComponent implements OnInit {
       //       console.log('Search completed!');
       //     });
       }
+      logout() {
+        this.router.navigate(['/login']);
+      }
 }

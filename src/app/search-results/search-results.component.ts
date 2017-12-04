@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-results',
@@ -11,7 +12,7 @@ export class SearchResultsComponent implements OnInit {
   public questions = [];
   searchTerm = '';
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     
@@ -26,6 +27,8 @@ export class SearchResultsComponent implements OnInit {
       this.questions = ['No results!'];
     }
   }
-
+  logout() {
+    this.router.navigate(['/login']);
+  }
   
 }
