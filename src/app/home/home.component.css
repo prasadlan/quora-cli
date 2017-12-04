@@ -52,6 +52,7 @@ md-card-content{
     font-size: 0.9em!important;
     height:35px!important;
     color: #666!important;
+    text-decoration: none;
 }
 
 .fill-space {
