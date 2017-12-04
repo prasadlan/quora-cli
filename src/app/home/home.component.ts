@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
+// import { AnswerService } from '../services/answer.service';
 
 @Component({
   selector: 'app-home',
@@ -33,14 +34,22 @@ export class HomeComponent implements OnInit {
     this.askquestionform = fb.group({
       'question': ['']
     });
+    // this.answerForm = fb.group({
+    //   'answerQ': ['']
+    // });
   }
 
   ngOnInit() {
     this.getQuestions();
   }
 
+  // postAnswer(value, question_id) {
+  //   this.answerService.postAnswer(value, question_id);
+  //   this.getQuestions();
+  // }
+
   getQuestions() {
-    this.home.getQuestions().then(data => {
+    this.homeService.getQuestions().then(data => {
       console.log(data);
       if(data.success == true){
         this.questions = data.body
@@ -51,8 +60,9 @@ export class HomeComponent implements OnInit {
     console.log(this.questions); 
   }
 
+
   askQuestion(value): void {
-    this.home.askQuestion(value.question)
+    this.homeService.askQuestion(value.question)
       .then(data => {
         console.log("saved !"); 
         this.statusMessage = 'Question posted successfully';

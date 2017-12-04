@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 export class HomeService {
 
   private searchUrl = 'http://localhost:3000/search/question?index=quora&type=questions&value=';
+  private unansweredQuestionUrl = 'http://localhost:3000/question/getUnanswered';
   private questionUrl = 'http://localhost:3000/question/getAll';
   private askQnUrl = 'http://localhost:3000/question/ask';
   private upvoteUrl = 'http://localhost:3000/question/upvote';
@@ -18,9 +19,9 @@ export class HomeService {
 
   }
 
-  // getQuestions(): Question[] {
-  //   return QUESTIONS;
-  // }
+  getUnansweredQuestionUrl() {
+    return this.http.get(this.unansweredQuestionUrl).map(data => data.json()).toPromise();
+  }
 
   getSearch(val: string) {
     const url= this.searchUrl + val;
