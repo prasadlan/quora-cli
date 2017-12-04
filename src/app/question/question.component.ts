@@ -37,4 +37,7 @@ export class QuestionComponent implements OnInit {
     });
   }
 
+  logout() {
+    this.router.navigate(['/login']);
+  }
 }

@@ -58,4 +58,7 @@ export class AnswerComponent implements OnInit {
     this.getQuestions();
   }
 
+  logout() {
+    this.router.navigate(['/login']);
+  }
 }
