@@ -8,6 +8,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class UserService {
     private isUserLoggedIn;
+    public questions = [];
+    searchString = '';
     user: any;
     authToken: any;
     constructor(private http: Http) { 

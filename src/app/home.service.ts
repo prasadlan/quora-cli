@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class HomeService {
 
+  private searchUrl = 'http://localhost:3000/search/question?index=quora&type=questions&value=';
   private questionUrl = 'http://localhost:3000/question/getAll';
   private askQnUrl = 'http://localhost:3000/question/ask';
   private upvoteUrl = 'http://localhost:3000/question/upvote';
@@ -20,6 +21,11 @@ export class HomeService {
   // getQuestions(): Question[] {
   //   return QUESTIONS;
   // }
+
+  getSearch(val: string) {
+    const url= this.searchUrl + val;
+    return this.http.get(url).map(data => data.json()).toPromise();
+  }
 
   getQuestions() {
     return this.http.get(this.questionUrl).map(data => data.json()).toPromise();

@@ -1,4 +1,3 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <md-toolbar color="primary">
   <span style="margin-right:25px;">Quora</span>
     
@@ -10,10 +9,10 @@
     <a routerLink="/" routerLinkActive=""></a>
   </nav>
       <md-icon mdPrefix style="margin-left:10px;"><i class="material-icons">search</i></md-icon>
-      <input type="text" [(ngModel)]="searchTerm" class="form-control" id="search" mdInput placeholder="Search Quora">
+      <input type="text" [(ngModel)]="searchTerm" id="search" mdInput placeholder="Search Quora">
       <button class="doc-button mat-button" (click)="onSubmit(searchTerm)" color="primary" type="submit" id="searchBtn">GO!</button>
     <span>
-      <button md-button (click)="openDialog()">
+      <button md-button [mdMenuTriggerFor]="menu">
       <md-icon><i class="material-icons">account_circle</i></md-icon>
       <!-- <md-menu #menu="mdMenu" [overlapTrigger]="false">
         <a md-menu-item routerLink="/profile" class="doc-button mat-button" routerLinkActive="" href="/profile">Profile</a>
@@ -22,37 +21,15 @@
       </button>
     </span>
   
-  
   <!-- <router-outlet></router-outlet> -->
-</md-toolbar>
+</md-toolbar> 
 
 <md-grid-list cols="8" rowHeight="2:1"> 
-  <div class="left">
-    <md-grid-tile colspan="2">
-      <md-nav-list>
-        <a class="custom-list-item md-item-list-selected" md-list-item href="/home"> Top Stories </a>
-        <a class="custom-list-item" md-list-item href="/"> New Questions </a>
-        <a class="custom-list-item" md-list-item href="/"> Bookmarked Answers </a>
-        <a class="custom-list-item" md-list-item href="/"> Science </a>
-        <a class="custom-list-item" md-list-item href="/"> Football </a>
-        <a class="custom-list-item" md-list-item href="/"> Movies </a>
-        <a class="custom-list-item" md-list-item href="/game-of-thrones"> Game of Thrones </a>
-      </md-nav-list>
-    </md-grid-tile>
-  </div>
   <div class="centre">
   <md-grid-tile colspan="4">
-    <md-card>
-      <form [formGroup]="askquestionform" (ngSubmit)="askQuestion(askquestionform.value)" class="ask-question">
-        <md-form-field class="form-element-width">
-          <textarea mdInput formControlName="question" [(ngModel)]="question" placeholder="What is your question?"></textarea>
-        </md-form-field>
-        <md-card-actions> <button md-button type="submit" class="custom-button">Ask Question</button> </md-card-actions>
-      </form>
-    </md-card>
     <md-card *ngFor="let question of questions"> 
       <md-card-title> {{question.question}} </md-card-title> 
-      <md-card-subtitle> <span style="margin-right:25px;">{{question.user}}</span>
+      <md-card-subtitle> <span style="margin-right:25px;">{{question.user.name}}</span>
         <!-- <span>Answered {{question.date}}</span>  -->
       </md-card-subtitle> 
       <!-- <md-card-content> {{question.answer}} </md-card-content> 

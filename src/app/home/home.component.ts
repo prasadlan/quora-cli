@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HomeService } from '../home.service';
 import { Question } from '../question';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angular/forms';
+import { UserService } from '../services/user.service';
+import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-home',
@@ -13,8 +15,21 @@ export class HomeComponent implements OnInit {
   questions: any = {};
   statusMessage: string;
   askquestionform: FormGroup;
+  currentUser = '';
+  isConnected = false;
   
-  constructor(private fb: FormBuilder, private router: Router, private home: HomeService) {
+  form: FormGroup;
+  status: string;
+
+  questionResults = [];
+
+  private queryText = '';
+  searchTerm = '';
+
+  private readonly INDEX = 'testquestions';
+  private readonly TYPE = 'question';
+
+  constructor(private userService: UserService, private cd: ChangeDetectorRef, private fb: FormBuilder, private router: Router, private home: HomeService) {
     this.askquestionform = fb.group({
       'question': ['']
     });
@@ -46,4 +61,42 @@ export class HomeComponent implements OnInit {
       });
   }
 
+  onSubmit(searchTerm:string) {
+    
+        this.userService.searchString = searchTerm;
+        this.queryText = searchTerm;
+    
+        this.searchTerm = '';
+
+        this.home.getSearch(searchTerm).then(data => {
+          console.log(data);
+          if(data.sucess){
+            this.questionResults = data.body
+            this.userService.questions = this.questionResults;
+            
+            this.queryText = '';
+  
+            this.router.navigate(['/search-results']);
+          } else{
+            console.log("not success");
+          }
+        });
+        console.log(this.questionResults);
+
+      //   this.es.fullTextSearch(
+      //     this.INDEX,
+      //     this.TYPE,
+      //     this.queryText).then(
+      //       response => {
+    
+      //         this.questionResults = response.hits.hits;
+    
+              
+    
+      //     }, err => {
+      //       console.error(err);
+      //     }).then(() => {
+      //       console.log('Search completed!');
+      //     });
+      }
 }

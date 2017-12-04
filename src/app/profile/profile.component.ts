@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ElementRef } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
@@ -15,9 +15,11 @@ export class ProfileComponent implements OnInit {
   fullname : string;
   email : string;
   currentUserSubscription: Subscription;
+  imagesrc : string = './assets/LinkedInCover.jpg';
   constructor(
     private route: Router,
     private userService: UserService,
+    private element: ElementRef
     // public dialog: MdDialog
     // @Inject('media') private mediaService
   ) {}
@@ -27,6 +29,7 @@ export class ProfileComponent implements OnInit {
   // isUser: boolean;
 
   ngOnInit() {
+    this.imagesrc = './assets/LinkedInCover.jpg';
   //   let User = JSON.parse(localStorage.getItem("currentUser"));
   //   if(User) {
   //     this.fullname = User.name; 
@@ -48,25 +51,15 @@ export class ProfileComponent implements OnInit {
   //   }
   }
 
-  // uploadImg(event){
-  //   var image = event.target.files[0];
+  uploadImg(event){
 
-  //   var pattern = /image-*/;
-  //   var reader = new FileReader();
-
-  //   if (!image.type.match(pattern)){
-  //     console.error('File is not an image!');
-  //     alert("The file is not an image, Please select an image");
-  //     return;
-  //   }
-
-  //   const formData = new FormData();
-  //   formData.append("image", image);
-  //   this.mediaService.uploadImg(image)
-  //     .then(res =>{
-  //       console.log("Upload successfully!");
-  //   })
-    
-  // }
+    const reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    var image = this.element.nativeElement.querySelector('.image');
+    reader.onload = function(e: any) {
+      var src = e.target.result;
+      image.imagesrc = src;
+    };
+  }
 
 }

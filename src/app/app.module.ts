@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { MdButtonModule, MdAutocompleteModule, MdListModule, MdCardModule, MdMenuModule, MdToolbarModule, MdIconModule, MatGridListModule, MatInputModule, MdTabsModule, MatExpansionModule } from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -22,12 +22,16 @@ import { AnswerService } from './services/answer.service';
 // import { MediaService } from './services/media.service';
 import { FilterComponent } from './filter/filter.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
+import { SignupComponent } from './signup/signup.component';
 
 export const router: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent},
   { path: 'answers', component: AnswerComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'search-results', component: SearchResultsComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' }
    ];
 
@@ -38,12 +42,14 @@ export const router: Routes = [
     HomeComponent,
     AnswerComponent,
     FilterComponent,
-    ProfileComponent
+    ProfileComponent,
+    SearchResultsComponent,
+    SignupComponent
   ],
   imports: [
     HttpModule,
     BrowserModule,
-    BrowserAnimationsModule,
+    // NoopAnimationsModule,
     MdAutocompleteModule,
     MdButtonModule,
     MdListModule,
@@ -72,7 +78,9 @@ export const router: Routes = [
     HomeComponent,
     LoginComponent,
     AnswerComponent,
-    ProfileComponent
+    ProfileComponent,
+    SearchResultsComponent,
+    SignupComponent
   ]
 })
 export class AppModule { }
