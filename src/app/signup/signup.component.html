@@ -1,0 +1,32 @@
+<md-toolbar color="accent" theme="light"> <span class="remaining"></span><strong>Quora </strong></md-toolbar>
+<md-card>
+  <form [formGroup]="signupform" (ngSubmit)="signupUser(signupform.value)" align="center">
+    <div>
+     <p>
+      <md-form-field class="FullName">
+        <input mdInput placeholder="Full Name" formControlName="name" value="" [(ngModel)]="name" required/>
+      </md-form-field>
+     </p>
+     <p>
+      <md-form-field class="UserName">
+        <input mdInput placeholder="Username" formControlName="username" value="" [(ngModel)]="username" required/>
+      </md-form-field>
+     </p>
+     <p>
+      <md-form-field class="Email">
+       <input mdInput placeholder="Email" formControlName="email" value="" [(ngModel)]="email" required/>
+      </md-form-field>
+     </p>
+     <p>
+      <md-form-field class="Password">
+        <input mdInput type="password" placeholder="Password" formControlName="password" value="" [(ngModel)]="password" required/>
+      </md-form-field>
+     </p>
+     <p>
+      <button md-raised-button color="accent" type="submit" class="custom-button" >Sign Up</button> 
+      &nbsp; &nbsp; &nbsp; &nbsp;
+      <button md-raised-button color="accent" routerLink="/login" class="custom-button">Cancel</button>
+    </p>
+    </div>
+  </form>
+</md-card>

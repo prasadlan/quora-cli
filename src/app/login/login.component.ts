@@ -3,30 +3,22 @@ import { UserService } from '../services/user.service';
 import { User } from '../user';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import {NgModule} from '@angular/core';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
-  name: string;
   username: string;
-  email: string;
   password: string;
-  signupform: FormGroup;
   signinform: FormGroup;
   signinUser = new User();
-  errorMsg = '';
   model: any = {};
   constructor(private fb: FormBuilder, private router: Router, private user: UserService) { 
-    this.signupform = fb.group({
-      'username': [''],
-      'name': [''],
-      'email': [''],
-      'password': ['']
-    });
     this.signinform = fb.group({
       'username': [''],
       'password': ['']
@@ -34,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    console.log("ngInit of login");
   }
 
   loginUser(e) {
@@ -49,29 +41,11 @@ export class LoginComponent implements OnInit {
         // if(status) {
         //   console.log(status);
           this.user.setUserLoggedIn();
-
           this.router.navigate(['home']);
         // }
         // else {
         //   this.router.navigate(['login']);
         // }
       });
-    }
-
-    @Output() createNewUserEvent = new EventEmitter();
-    signupUser(value) {
-      const signinuser = {
-        name: value.name,
-        email: value.email,
-        username: value.username,
-        password: value.password
-      }
-      console.log(this.signinUser);
-      this.user.create(signinuser)
-        .subscribe(status => {
-          //localStorage.setItem('currentUser', JSON.stringify(this.signinUser));
-          this.user.setUserLoggedIn();
-          this.router.navigate(['home']);
-        });
     }
 }
