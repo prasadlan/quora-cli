@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+import { HomeService } from '../home.service';
 
 @Component({
   selector: 'app-search-results',
@@ -12,7 +13,10 @@ export class SearchResultsComponent implements OnInit {
   public questions = [];
   searchTerm = '';
 
-  constructor(private userService: UserService, private router: Router) { }
+  questionResults = [];
+  
+    private queryText = '';
+  constructor(private userService: UserService, private router: Router, private homeService: HomeService) { }
 
   ngOnInit() {
     
@@ -27,6 +31,30 @@ export class SearchResultsComponent implements OnInit {
       this.questions = ['No results!'];
     }
   }
+
+  onSubmit(searchTerm:string) {
+    
+        this.userService.searchString = searchTerm;
+        this.queryText = searchTerm;
+    
+        this.searchTerm = '';
+
+        this.homeService.getSearch(searchTerm).then(data => {
+          console.log(data);
+          if(data.sucess){
+            this.questionResults = data.body
+            this.userService.questions = this.questionResults;
+            
+            this.queryText = '';
+  
+            this.router.navigate(['/search-results']);
+          } else{
+            console.log("not success");
+          }
+        });
+        console.log(this.questionResults);
+      }
+
   logout() {
     this.router.navigate(['/login']);
   }
