@@ -55,7 +55,7 @@
       <md-card-title> 
         <a class="custom-list-item" md-list-item routerLink="/question/{{ question._id }}" routerLinkActive="active"> {{question.question}}  </a>
       </md-card-title> 
-      <md-card-subtitle> <span style="margin-right:25px;">{{question.user}}</span>
+      <md-card-subtitle> <span style="margin-right:25px;">{{question.user.name}}</span>
         <!-- <span>Answered {{question.date}}</span>  -->
       </md-card-subtitle> 
 
@@ -68,10 +68,13 @@
 
       <!-- <md-card-content> {{question.answer}} </md-card-content> 
       <md-card-actions> <button md-button class="vote-button">Upvote</button> <button md-button class="vote-button">Downvote</button> </md-card-actions>  -->
-      <md-card *ngFor= "let a1 of question.answers">
-        <md-card-title> {{a1.answer}} </md-card-title> 
-        <md-card-subtitle> <span style="margin-right:25px;">{{a1.user.username}} answered on {{a1.created_on}}</span> </md-card-subtitle> 
-      </md-card>
+      <!-- <md-card> -->
+        <md-list *ngFor= "let a1 of question.answers">
+            <md-list-item> {{a1.answer}} </md-list-item>
+            <!-- <md-card-subtitle> <span style="margin-right:25px;">{{a1.user.name}} answered on {{a1.created_on}}</span> </md-card-subtitle>  -->
+        </md-list>
+
+      <!-- </md-card> -->
     </md-card>
     
   </md-grid-tile>
