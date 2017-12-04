@@ -10,10 +10,10 @@
     </nav>
         <md-icon mdPrefix style="margin-left:10px;"><i class="material-icons">search</i></md-icon>
         <input mdInput placeholder="Search Quora">
-        <button class="doc-button mat-button" (click)="onSubmit(searchTerm.value)" color="primary" type="submit" id="searchBtn">GO!</button>
+        <button class="doc-button mat-button" (click)="onSubmit(searchTerm)" color="primary" type="submit" id="searchBtn">GO!</button>
       <span>
-        <button md-button [mdMenuTriggerFor]="menu">
-        <md-icon><i class="material-icons">account_circle</i></md-icon>
+        <button md-button (click)="logout()"> Logout
+        <!-- <md-icon><i class="material-icons">account_circle</i></md-icon> -->
         <!-- <md-menu #menu="mdMenu" [overlapTrigger]="false">
           <a md-menu-item routerLink="/profile" class="doc-button mat-button" routerLinkActive="" href="/profile">Profile</a>
           <a md-menu-item routerLink="/login" class="doc-button mat-button" href="/login">Logout</a>

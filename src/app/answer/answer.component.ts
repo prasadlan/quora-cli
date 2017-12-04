@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../home.service';
 import { AnswerService } from '../services/answer.service';
+import { UserService } from '../services/user.service';
 import { Question } from '../question';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angular/forms';
@@ -16,7 +17,11 @@ export class AnswerComponent implements OnInit {
   answerform: FormGroup;
   mdata: any = {};
 
-  constructor(private fb: FormBuilder, private router: Router, private home:HomeService, private answerService:AnswerService) {
+  questionResults = [];
+  
+    private queryText = '';
+    searchTerm = '';
+  constructor(private fb: FormBuilder, private router: Router, private homeService:HomeService, private answerService:AnswerService, private userService: UserService) {
     this.answerform = fb.group({
       'answer': [''],
       'question_id': ['']
@@ -42,7 +47,7 @@ export class AnswerComponent implements OnInit {
   }
 
   getQuestions() {
-    this.home.getUnansweredQuestionUrl().then(data => {
+    this.homeService.getUnansweredQuestionUrl().then(data => {
       if(data.success == true){
         this.questions = data.body;
 
@@ -58,4 +63,30 @@ export class AnswerComponent implements OnInit {
     this.getQuestions();
   }
 
+  onSubmit(searchTerm:string) {
+    
+        this.userService.searchString = searchTerm;
+        this.queryText = searchTerm;
+    
+        this.searchTerm = '';
+
+        this.homeService.getSearch(searchTerm).then(data => {
+          console.log(data);
+          if(data.sucess){
+            this.questionResults = data.body
+            this.userService.questions = this.questionResults;
+            
+            this.queryText = '';
+  
+            this.router.navigate(['/search-results']);
+          } else{
+            console.log("not success");
+          }
+        });
+        console.log(this.questionResults);
+      }
+
+  logout() {
+    this.router.navigate(['/login']);
+  }
 }

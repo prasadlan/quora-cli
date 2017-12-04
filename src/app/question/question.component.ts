@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Http } from '@angular/http'; 
+import { UserService } from '../services/user.service';
+import { HomeService } from '../home.service';
 
 @Component({
   selector: 'app-question',
@@ -12,7 +14,12 @@ export class QuestionComponent implements OnInit {
   question  = '';
   answers = [];
   question_name = '';
-  constructor(private http: Http, private router: Router, private activatedRoute: ActivatedRoute) {
+
+  questionResults = [];
+  
+    private queryText = '';
+    searchTerm = '';
+  constructor(private http: Http, private router: Router, private activatedRoute: ActivatedRoute, private userService: UserService, private homeService:HomeService) {
     
    }
 
@@ -37,4 +44,30 @@ export class QuestionComponent implements OnInit {
     });
   }
 
+  onSubmit(searchTerm:string) {
+    
+        this.userService.searchString = searchTerm;
+        this.queryText = searchTerm;
+    
+        this.searchTerm = '';
+
+        this.homeService.getSearch(searchTerm).then(data => {
+          console.log(data);
+          if(data.sucess){
+            this.questionResults = data.body
+            this.userService.questions = this.questionResults;
+            
+            this.queryText = '';
+  
+            this.router.navigate(['/search-results']);
+          } else{
+            console.log("not success");
+          }
+        });
+        console.log(this.questionResults);
+      }
+
+  logout() {
+    this.router.navigate(['/login']);
+  }
 }
