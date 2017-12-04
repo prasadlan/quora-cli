@@ -14,16 +14,16 @@
     <span>
       <button md-button [mdMenuTriggerFor]="menu">
       <md-icon><i class="material-icons">account_circle</i></md-icon>
-      <md-menu #menu="mdMenu" [overlapTrigger]="false">
+      <!-- <md-menu #menu="mdMenu" [overlapTrigger]="false">
         <a md-menu-item routerLink="/profile" class="doc-button mat-button" routerLinkActive="" href="/profile">Profile</a>
         <a md-menu-item routerLink="/login" class="doc-button mat-button" href="/login">Logout</a>
-      </md-menu>
+      </md-menu> -->
       </button>
     </span>
   
   
-  <router-outlet></router-outlet>
-</md-toolbar>
+  <router-outlet></router-outlet> -->
+</md-toolbar> 
 
   <!-- <div class="w3-card-2 w3-round w3-white">
     <div class="w3-container">
@@ -97,10 +97,10 @@
         <div class="left">
           <md-grid-tile colspan="2">
             <div class="img-holder">
-              <img src="./assets/LinkedInCover.jpg" class="user">
+              <img  id="image" src="{{imagesrc}}" class="user">
               <br>
               <div class="child">
-                  <input type="file" id="avatar" (change)="uploadImg($event)" #fileInput accept="image/jpeg, image/png, image/jpg">
+                  <input type="file" id="avatar" (change)="uploadImg($event)">
               </div>
             </div>
           </md-grid-tile>
