@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { AnswerComponent } from './answer/answer.component';
 
 import { User } from './models/user';
+import { Question } from './question';
 
 import { environment } from '../environments/environment';
 
@@ -22,13 +23,16 @@ import { AnswerService } from './services/answer.service';
 // import { MediaService } from './services/media.service';
 import { FilterComponent } from './filter/filter.component';
 import { ProfileComponent } from './profile/profile.component';
+import { QuestionComponent } from './question/question.component';
 
 export const router: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'answers', component: AnswerComponent },
   { path: 'profile', component: ProfileComponent },
+  {path: 'question/:question', component: QuestionComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' }
+
    ];
 
 @NgModule({
@@ -38,7 +42,8 @@ export const router: Routes = [
     HomeComponent,
     AnswerComponent,
     FilterComponent,
-    ProfileComponent
+    ProfileComponent,
+    QuestionComponent
   ],
   imports: [
     HttpModule,

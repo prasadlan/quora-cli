@@ -14,9 +14,9 @@ export class HomeComponent implements OnInit {
   questions: any = {};
   statusMessage: string;
   askquestionform: FormGroup;
-  answerForm: FormGroup;
-
-  constructor(private fb: FormBuilder, private router: Router, private homeService: HomeService){//, private answerService: AnswerService) {
+  id: string;
+  
+  constructor(private fb: FormBuilder, private router: Router, private homeService: HomeService) {
     this.askquestionform = fb.group({
       'question': ['']
     });
@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
     });
     console.log(this.questions); 
   }
+
 
   askQuestion(value): void {
     this.homeService.askQuestion(value.question)
