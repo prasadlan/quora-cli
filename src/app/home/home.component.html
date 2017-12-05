@@ -58,7 +58,7 @@
       <md-card-title class="child"> 
         <a class="custom-list-item" md-list-item routerLink="/question/{{ question._id }}" routerLinkActive="active"> {{question.question}}  </a>
       </md-card-title> 
-      <md-card-subtitle> <span style="margin-right:25px;">{{question.user}}</span>
+      <md-card-subtitle class="child"> <span style="margin-right:25px;">{{question.user.name}}</span>
         <!-- <span>Answered {{question.date}}</span>  -->
       </md-card-subtitle> 
 
