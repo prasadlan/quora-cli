@@ -7,6 +7,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class HomeService {
+    public questions = [];
+    searchString = "";
 
   /**
    * List of URLs used by services to make a http request.
