@@ -124,3 +124,41 @@ mat-list-item-content{
   
     object-fit: cover;
 }
+
+.upvote-button {
+    line-height: 22px!important;
+    border-radius: 3px;
+    padding: 3px 7px 4px 7px;
+    background: #f1f8fb;
+    color: #2b6dad;
+    border: 1px solid #bbcadc;
+}
+
+.downvote-button {
+    line-height: 22px!important;
+    border-radius: 3px;
+    color: #999;
+    
+    padding: 3px 8px 4px 8px;
+}
+
+.custom-card-actions {
+    margin: 0!important;
+}
+
+.upvoted{
+    background: #f6f6f6;
+    color: #919191;
+    border: 1px solid #919191;
+}
+
+.undomessage{
+    display: none;
+}
+
+.undo{
+    cursor: pointer;
+    padding: 3px 6px;
+    background: #f6f6f6;
+    color: #919191;
+}
