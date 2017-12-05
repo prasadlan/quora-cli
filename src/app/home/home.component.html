@@ -13,8 +13,8 @@
       <input type="text" [(ngModel)]="searchTerm" class="form-control" id="search" mdInput placeholder="Search Quora">
       <button class="doc-button mat-button" (click)="onSubmit(searchTerm)" color="primary" type="submit" id="searchBtn">GO!</button>
     <span>
-      <button md-button (click)="openDialog()">
-      <md-icon><i class="material-icons">account_circle</i></md-icon>
+      <button md-button (click)="logout()">Logout
+      <!-- <md-icon><i class="material-icons">account_circle</i></md-icon> -->
       <!-- <md-menu #menu="mdMenu" [overlapTrigger]="false">
         <a md-menu-item routerLink="/profile" class="doc-button mat-button" routerLinkActive="" href="/profile">Profile</a>
         <a md-menu-item routerLink="/login" class="doc-button mat-button" href="/login">Logout</a>
@@ -52,10 +52,13 @@
     </md-card>
     
     <md-card *ngFor="let question of questions"> 
-      <md-card-title> 
+        <div class="img-holder">
+            <img  id="image" src="./assets/LinkedInCover.jpg" class="user">
+        </div>
+      <md-card-title class="child"> 
         <a class="custom-list-item" md-list-item routerLink="/question/{{ question._id }}" routerLinkActive="active"> {{question.question}}  </a>
       </md-card-title> 
-      <md-card-subtitle> <span style="margin-right:25px;">{{question.user.name}}</span>
+      <md-card-subtitle> <span style="margin-right:25px;">{{question.user}}</span>
         <!-- <span>Answered {{question.date}}</span>  -->
       </md-card-subtitle> 
 

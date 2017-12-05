@@ -4,7 +4,6 @@ import { Question } from '../question';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angular/forms';
 import { UserService } from '../services/user.service';
-import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 // import { AnswerService } from '../services/answer.service';
 
 @Component({
@@ -26,9 +25,6 @@ export class HomeComponent implements OnInit {
 
   private queryText = '';
   searchTerm = '';
-
-  private readonly INDEX = 'testquestions';
-  private readonly TYPE = 'question';
 
   constructor(private userService: UserService, private cd: ChangeDetectorRef, private fb: FormBuilder, private router: Router, private homeService: HomeService) {
     this.askquestionform = fb.group({
@@ -92,21 +88,8 @@ export class HomeComponent implements OnInit {
           }
         });
         console.log(this.questionResults);
-
-      //   this.es.fullTextSearch(
-      //     this.INDEX,
-      //     this.TYPE,
-      //     this.queryText).then(
-      //       response => {
-    
-      //         this.questionResults = response.hits.hits;
-    
-              
-    
-      //     }, err => {
-      //       console.error(err);
-      //     }).then(() => {
-      //       console.log('Search completed!');
-      //     });
+      }
+      logout() {
+        this.router.navigate(['/login']);
       }
 }

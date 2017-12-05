@@ -1,4 +1,8 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { HomeService } from '../home.service';
+import { Question } from '../question';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angular/forms';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -8,13 +12,18 @@ import { UserService } from '../services/user.service';
 })
 export class SearchResultsComponent implements OnInit {
 
-  public questions = [];
+  //public questions = [];
+  questions: any = {};
   searchTerm = '';
 
-  constructor(private userService: UserService) { }
+  questionResults = [];
+  
+  private queryText = '';
+  constructor(private userService: UserService, private router: Router, private homeService: HomeService) { }
 
   ngOnInit() {
     
+    this.getQuestions();
     this.searchTerm = this.userService.searchString;
     console.log("ser " + this.userService.questions);
     if(this.userService.questions.length != 0) {
@@ -23,9 +32,47 @@ export class SearchResultsComponent implements OnInit {
       }
     }
     else {
-      this.questions = ['No results!'];
+      this.questions[0] = ['No results!'];
     }
   }
 
+  getQuestions() {
+    this.homeService.getQuestions().then(data => {
+      console.log(data);
+      if(data.success == true){
+        this.questions = data.body
+      } else{
+        console.log("not success");
+      }
+    });
+    console.log(this.questions); 
+  }
+
+  onSubmit(searchTerm:string) {
+    
+        this.userService.searchString = searchTerm;
+        this.queryText = searchTerm;
+    
+        this.searchTerm = '';
+
+        this.homeService.getSearch(searchTerm).then(data => {
+          console.log(data);
+          if(data.sucess){
+            this.questionResults = data.body
+            this.userService.questions = this.questionResults;
+            
+            this.queryText = '';
+  
+            this.router.navigate(['/search-results']);
+          } else{
+            console.log("not success");
+          }
+        });
+        console.log(this.questionResults);
+      }
+
+  logout() {
+    this.router.navigate(['/login']);
+  }
   
 }

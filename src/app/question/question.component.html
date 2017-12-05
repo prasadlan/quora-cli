@@ -11,14 +11,14 @@
   </nav>
       <md-icon mdPrefix style="margin-left:10px;"><i class="material-icons">search</i></md-icon>
       <input type="text" mdInput placeholder="Search Quora">
-      <button class="doc-button mat-button" (click)="onSubmit(searchTerm.value)" color="primary" type="submit" id="searchBtn">GO!</button>
+      <button class="doc-button mat-button" (click)="onSubmit(searchTerm)" color="primary" type="submit" id="searchBtn">GO!</button>
     <span>
-      <button md-button [mdMenuTriggerFor]="menu">
-      <md-icon><i class="material-icons">account_circle</i></md-icon>
+      <button md-button (click)="logout()">Logout
+      <!-- <md-icon><i class="material-icons">account_circle</i></md-icon>
       <md-menu #menu="mdMenu" [overlapTrigger]="false">
         <a md-menu-item routerLink="/profile" class="doc-button mat-button" routerLinkActive="" href="/profile">Profile</a>
         <a md-menu-item routerLink="/login" class="doc-button mat-button" href="/login">Logout</a>
-      </md-menu>
+      </md-menu> -->
       </button>
     </span>
   
@@ -26,27 +26,34 @@
   <router-outlet></router-outlet>
 </md-toolbar>
 
-<md-grid-list cols="8" rowHeight="2:1"> 
+<md-grid-list cols="8" rowHeight="2:1">
+    <div class="left">
+
+    </div>
     <div class="centre">
         <md-grid-tile colspan="4">
           <md-card>
               <md-card-title> 
-                  <h1> {{question_name}}</h1>
-                </md-card-title> 
-                <md-card-subtitle> <span style="margin-right:25px;">{{question.user}}</span>
+                  {{question_name}}
+              </md-card-title> 
+              <md-card-subtitle> <span style="margin-right:25px;">{{question.user}}</span>
                   <!-- <span>Answered {{question.date}}</span>  -->
-                </md-card-subtitle> 
-              
+              </md-card-subtitle> 
+              <md-card-actions> <button md-button class="answer-button vote-button" (click)="toggleAnswerDialog($event);">Answer</button> <button md-button class="vote-button">Pass</button> <button md-button class="vote-button">Follow</button> <button md-button class="vote-button">Downvote</button> </md-card-actions>
+              <form [formGroup]="answerform" (ngSubmit)="postAnswer(answerform.value, question)" class="post-answer">
+                <md-form-field class="form-element-width">
+                  <textarea mdInput formControlName="answer" [(ngModel)]="answer" placeholder="Your answer here"></textarea>
+                </md-form-field>
+                <md-card-actions> <button md-button type="submit" type="submit" class="custom-button">Submit Answer</button> </md-card-actions>
+              </form>
           </md-card>
-
-          
           <md-card *ngFor= "let a1 of answers">
           <md-card-title> {{a1.answer}} </md-card-title> 
           <md-card-subtitle> <span style="margin-right:25px;">{{a1.user}}</span><span>Answered {{a1.created_on}}</span> </md-card-subtitle> 
-          </md-card>
-            
+          </md-card>  
         </md-grid-tile>
-        
-
+    </div>
+    <div class="right">
+      
     </div>
 </md-grid-list>
