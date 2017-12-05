@@ -26,5 +26,9 @@ export class HomePage {
         return element(by.css('#md-raised-button-2'));
     }
 
-    
+    getLogoutBtn() {
+        return element(by.css('#md-button-0'));
+    }
+
+
 }
