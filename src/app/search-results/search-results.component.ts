@@ -1,7 +1,9 @@
-import { Component, OnInit} from '@angular/core';
-import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HomeService } from '../home.service';
+import { Question } from '../question';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angular/forms';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-search-results',
@@ -15,7 +17,7 @@ export class SearchResultsComponent implements OnInit {
 
   questionResults = [];
   
-    private queryText = '';
+  private queryText = '';
   constructor(private userService: UserService, private router: Router, private homeService: HomeService) { }
 
   ngOnInit() {
@@ -28,7 +30,7 @@ export class SearchResultsComponent implements OnInit {
       }
     }
     else {
-      this.questions = ['No results!'];
+      this.questions[0] = ['No results!'];
     }
   }
 
