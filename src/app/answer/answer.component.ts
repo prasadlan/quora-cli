@@ -82,13 +82,15 @@ export class AnswerComponent implements OnInit {
    * Question is removed from answers page as soon as it is answered.
    * 
    * @param value 
+   * parameter value is the answer posted for a question.
    * @param question_id 
+   * parameter question_id is the question id for which answer is posted.
    * @param event 
+   * event parameter is used to link the click event to the submit button clicked.
+   * 
    */
   postAnswer(value, question_id, event) {
-
     this.answerService.postAnswer(value, question_id);
-
     let target = event.srcElement;
     let parent = target.parentNode;
     while(parent.nodeName != 'MD-CARD') {
@@ -99,14 +101,14 @@ export class AnswerComponent implements OnInit {
   }
 
   /**
-   * 
+   * Function to get filtered questions based on the search term.
    * 
    * @param searchTerm 
+   * parameter searchTerm is the input value from search bar.
    */
   onSubmit(searchTerm:string) {
     this.userService.searchString = searchTerm;
     this.queryText = searchTerm;
-
     this.searchTerm = '';
 
     this.homeService.getSearch(searchTerm).then(data => {
@@ -114,9 +116,7 @@ export class AnswerComponent implements OnInit {
       if(data.sucess){
         this.questionResults = data.body
         this.userService.questions = this.questionResults;
-        
         this.queryText = '';
-
         this.router.navigate(['/search-results']);
       } else{
         console.log("not success");

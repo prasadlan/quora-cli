@@ -96,8 +96,10 @@ export class HomeComponent implements OnInit {
   }
 
   /**
+   * Function to get filtered questions based on the search term.
    * 
    * @param searchTerm 
+   * parameter searchTerm is the input value from search bar.
    */
   onSubmit(searchTerm:string) {
     this.userService.searchString = searchTerm;

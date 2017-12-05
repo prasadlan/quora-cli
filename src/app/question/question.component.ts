@@ -60,8 +60,9 @@ export class QuestionComponent implements OnInit {
   }
 
   /**
-  * 
-  */
+   * Function to get all unanswered questions.
+   * Sets the returned value, list of questions, to the property 'questions'.
+   */
   getQuestions() {
     this.homeService.getUnansweredQuestionUrl().then(data => {
       if(data.success == true){
@@ -74,8 +75,10 @@ export class QuestionComponent implements OnInit {
   }
   
   /**
+   * Toggles the hidden text area in and out of view.
    * 
    * @param event 
+   * event parameter is used to link the click event to the button clicked.
    */
   toggleAnswerDialog(event): void {
     let target = event.srcElement;
@@ -92,9 +95,12 @@ export class QuestionComponent implements OnInit {
   }
 
   /**
+   * Function to post answer to the question.
    * 
    * @param value 
+   * parameter value is the answer posted for a question.
    * @param question_id 
+   * parameter question_id is the question id for which answer is posted.
    */
   postAnswer(value, question_id) {
     this.answerService.postAnswer(value, question_id);
@@ -102,15 +108,15 @@ export class QuestionComponent implements OnInit {
   }
 
   /**
+   * Function to get filtered questions based on the search term.
    * 
    * @param searchTerm 
+   * parameter searchTerm is the input value from search bar.
    */
   onSubmit(searchTerm:string) {
     this.userService.searchString = searchTerm;
     this.queryText = searchTerm;
-
     this.searchTerm = '';
-
     this.homeService.getSearch(searchTerm).then(data => {
       console.log(data);
       if(data.sucess){

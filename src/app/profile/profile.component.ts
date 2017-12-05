@@ -12,9 +12,18 @@ import { User } from '../models/user';
 })
 export class ProfileComponent implements OnInit {
   selectedOption: string;
+  /**
+   * Full name of the user.
+   */
   fullname : string;
+  /**
+   * Email ID of the user.
+   */
   email : string;
   currentUserSubscription: Subscription;
+  /**
+   * Reference URL to user profile picture.
+   */
   imagesrc : string = './assets/LinkedInCover.jpg';
   constructor(
     private route: Router,
@@ -54,8 +63,13 @@ export class ProfileComponent implements OnInit {
   //   }
   }
 
+  /**
+   * Function to upload an image.
+   * 
+   * @param event 
+   * event parameter is used to link the click event to the button clicked.
+   */
   uploadImg(event){
-
     const reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
     var image = this.element.nativeElement.querySelector('.image');

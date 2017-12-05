@@ -13,11 +13,23 @@ import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angula
 })
 
 export class LoginComponent implements OnInit {
+  /**
+   * Username property
+   */
   username: string;
+  /**
+   * Password property
+   */
   password: string;
+  /**
+   * Form name of signin page
+   */
   signinform: FormGroup;
+  /**
+   * 
+   */
   signinUser = new User();
-  model: any = {};
+
   constructor(private fb: FormBuilder, private router: Router, private user: UserService) { 
     this.signinform = fb.group({
       'username': [''],
@@ -33,8 +45,11 @@ export class LoginComponent implements OnInit {
   }
 
   /**
+   * Function to let user login. 
+   * User is allowed to login only if he has already signedup.
    * 
-   * @param e 
+   * @param e
+   * e parameter is the form value object which has username and password fields in it. 
    */
   loginUser(e) {
   	console.log(e);
