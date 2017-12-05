@@ -16,22 +16,44 @@ export class UserService {
       this.isUserLoggedIn = false;
     }
 
+    /**
+     * Util function to set login status of user.
+     */
     setUserLoggedIn() {
       this.isUserLoggedIn = true;
     }
 
+    /**
+     * Util function to get the login user status.
+     */
     getUserLoggedIn() {
       return this.isUserLoggedIn;
     }
 
+    /**
+     * Util function to set login status of user to false after user logs out.
+     */
     setUserLoggedOut() {
       this.isUserLoggedIn = false;
     }
 
+    /**
+     * Servie to get user details.
+     * 
+     * @param user
+     * user parameter
+     *  
+     */
     getUser(user: User) {
       return this.http.get('/api/users/' + user, this.jwt()).map((response: Response) => response.json());
     }
 
+    /**
+     * Service to create an account for new user.
+     * 
+     * @param user 
+     * user parameter of type User which contains user signup data.
+     */
     create(user: User) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -66,6 +88,12 @@ export class UserService {
     //   this.authToken = token;
     // }
 
+    /**
+     * Service to update user details.
+     * 
+     * @param user 
+     * user parameter of type User which contains user updated data.
+     */
     update(user: User) {
         return this.http.put('/api/users/' + user, user, this.jwt()).map((response: Response) => response.json());
     }
@@ -86,7 +114,15 @@ export class UserService {
         }
     }
     
-
+    /**
+     * Service to login user.
+     * 
+     * @param username 
+     * username parameter to save login username.
+     * @param password 
+     * password parameter to save login password.
+     * 
+     */
     loginUser(username: string, password: string) {
       const headers = new Headers();
       headers.append('Content-Type', 'application/json');
@@ -103,11 +139,20 @@ export class UserService {
       });
     }
 
+    /**
+     * Service to logout user.
+     */
     logout() {
       // remove user from local storage to log user out
       localStorage.removeItem('currentUser');
   }
 
+    /**
+     * Service that returns user profile of user based on username.
+     * @param username 
+     * username parameter
+     * 
+     */
     getUserInfoForProfile(username: string) {
       const headers = new Headers();
       headers.append('Content-Type', 'application/json');

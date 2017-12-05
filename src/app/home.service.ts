@@ -8,6 +8,9 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class HomeService {
 
+  /**
+   * List of URLs used by services to make a http request.
+   */
   private searchUrl = 'http://localhost:3000/search/question?index=quora&type=questions&value=';
   private unansweredQuestionUrl = 'http://localhost:3000/question/getUnanswered';
   private questionUrl = 'http://localhost:3000/question/getAll';
@@ -19,25 +22,39 @@ export class HomeService {
 
   }
 
+  /**
+   * Service to get a list of all unanswered questions.
+   */
   getUnansweredQuestionUrl() {
     return this.http.get(this.unansweredQuestionUrl).map(data => data.json()).toPromise();
   }
 
+  /**
+   * Service to get list of questions that match the search text.
+   * 
+   * @param val 
+   * val parameter is the string used to search for questions.
+   */
   getSearch(val: string) {
     const url= this.searchUrl + val;
     return this.http.get(url).map(data => data.json()).toPromise();
   }
 
+  /**
+   * Service to get all latest questions for home page.
+   * HTTP request of type GET and url questionUrl
+   */
   getQuestions() {
     return this.http.get(this.questionUrl).map(data => data.json()).toPromise();
   }
 
-  getQuestionsByCategory(id: number) {
-    const url = `${this.questionUrl}/${id}`;
-    return this.http.get(url)
-                    .map(response => response.json())
-  }
-
+  /**
+   * Service to post a new question.
+   * HTTP request of type POST and url askQnUrl.
+   * 
+   * @param question
+   * question parameter with question text to be saved. 
+   */
   askQuestion(question: string) {
     const header = new Headers({ 'Content-Type': 'application/json' });
     header.append('access-control-allow-origin' ,'*');
