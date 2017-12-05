@@ -18,7 +18,7 @@ md-grid-list{
 
 md-card{
     margin: 5px 0;
-    height: auto;
+    min-height: 100px;
 }
 
 .custom-button{
@@ -100,6 +100,20 @@ md-toolbar{
 .child {
     position: relative;
     left: 50px;
+}
+
+.grandchild {
+    position: relative;
+    padding-top: 50px;
+    /* left: 10px; */
+}
+
+mat-list-item-content{
+    height: initial!important;
+}
+
+.md-list-item-height {
+    height: initial!;
 }
 
 .user {
