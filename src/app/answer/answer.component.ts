@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angula
   templateUrl: './answer.component.html',
   styleUrls: ['./answer.component.css']
 })
+
 export class AnswerComponent implements OnInit {
   questions: any = {};
   answerform: FormGroup;

@@ -36,6 +36,7 @@ export class SearchResultsComponent implements OnInit {
   ngOnInit() {
     this.getQuestions();
     this.searchTerm = this.userService.searchString;
+    console.log("searchTerm"+this.searchTerm);
     console.log("ser " + this.userService.questions);
     if(this.userService.questions.length != 0) {
       for(let i = 0; i < this.userService.questions.length; i++) {
@@ -43,7 +44,7 @@ export class SearchResultsComponent implements OnInit {
       }
     }
     else {
-      this.questions[0] = ['No results!'];
+      this.questions = ['No results!'];
     }
   }
 

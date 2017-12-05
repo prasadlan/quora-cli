@@ -7,26 +7,22 @@ browser.driver.controlFlow().execute = function() {
 
   // queue 75ms wait
   origFn.call(browser.driver.controlFlow(), function() {
-    return protractor.promise.delayed(15);
+    return protractor.promise.delayed(25);
   });
 
   return origFn.apply(browser.driver.controlFlow(), args);
 };
 
-export class LoginPage {
-    navigateTo(path = '/login') {
+export class AnswerPage {
+    navigateTo(path = '/answers') {
         return browser.get(path);
     }
     
-    getUserNameInput() {
-        return element(by.css('#md-input-0'));
-    }
-
-    getPasswordInput() {
+     getQuestionTextInput() {
         return element(by.css('#md-input-1'));
     }
 
-    getLoginButton() {
-        return element(by.id('loginBtn'));
+    getAskQuestionBtn() {
+        return element(by.css('#md-raised-button-2'));
     }
 }

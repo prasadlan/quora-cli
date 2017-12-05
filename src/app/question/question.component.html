@@ -39,7 +39,7 @@
                 <!-- <span style="margin-right:25px;">{{question.user.name}}</span> -->
                   <!-- <span>Answered {{question.date}}</span>  -->
               </md-card-subtitle> 
-              <md-card-actions> <button md-button class="answer-button vote-button" (click)="toggleAnswerDialog($event);">Answer</button> <button md-button class="vote-button">Pass</button> <button md-button class="vote-button">Follow</button> <button md-button class="vote-button">Downvote</button> </md-card-actions>
+              <md-card-actions> <button md-button class="answer-button vote-button" (click)="toggleAnswerDialog($event);">Answer</button> <button md-button class="vote-button">Downvote</button> </md-card-actions>
               <form [formGroup]="answerform" (ngSubmit)="postAnswer(answerform.value, question)" class="post-answer">
                 <md-form-field class="form-element-width">
                   <textarea mdInput formControlName="answer" [(ngModel)]="answer" placeholder="Your answer here"></textarea>
@@ -61,7 +61,7 @@
 
            
           <div class="img-holder">
-              <img  id="image" src="./{{a1.user.name}}" class="user">
+              <img  id="image" src="./assets/LinkedInCover.jpg" class="user">
           </div>
           <!-- <md-card-subtitle class="child"> <span style="margin-right:25px;">{{question.user.name}}</span>
              <span>Answered {{question.date}}</span> 
