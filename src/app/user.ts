@@ -1,3 +1,6 @@
+/**
+ * User class for signup.
+ */
 export class User {
     constructor(
         public name: string = '',
