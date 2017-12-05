@@ -7,26 +7,16 @@ browser.driver.controlFlow().execute = function() {
 
   // queue 75ms wait
   origFn.call(browser.driver.controlFlow(), function() {
-    return protractor.promise.delayed(15);
+    return protractor.promise.delayed(75);
   });
 
   return origFn.apply(browser.driver.controlFlow(), args);
 };
 
-export class LoginPage {
-    navigateTo(path = '/login') {
+export class SearchPage {
+    navigateTo(path = '/search') {
         return browser.get(path);
     }
     
-    getUserNameInput() {
-        return element(by.css('#md-input-0'));
-    }
-
-    getPasswordInput() {
-        return element(by.css('#md-input-1'));
-    }
-
-    getLoginButton() {
-        return element(by.id('loginBtn'));
-    }
+   
 }
