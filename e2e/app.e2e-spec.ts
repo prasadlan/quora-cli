@@ -93,11 +93,11 @@ describe('Quora App', () => {
   
       let username = loginpage.getUserNameInput();
       let password = loginpage.getPasswordInput();
-      username.sendKeys('prasad.lanka');
-      password.sendKeys('password');
+      username.sendKeys('joy');
+      password.sendKeys('joy');
   
-      expect(username.getAttribute('value')).toEqual('prasad.lanka');
-      expect(password.getAttribute('value')).toEqual('password');
+      expect(username.getAttribute('value')).toEqual('joy');
+      expect(password.getAttribute('value')).toEqual('joy');
   
       let loginBtn = loginpage.getLoginButton().click;
       });
@@ -130,41 +130,33 @@ describe('Quora App', () => {
       let askQuestionBtn = homepage.getAskQuestionBtn().click;
     });
 
-    it('should redirect to answers page', () => {
-    homepage.navigateTo('/answers');
+    it('It should logout', () => {
+      let logoutBtn = homepage.getLogoutBtn().click;
+      homepage.navigateTo('/login');
     });
   });
 
-   /* Describe for answer */ 
-   describe('Home page for the user', () => {
-    beforeEach(() => {
-      answerpage = new AnswerPage();
-      jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
-    });
+      
+    // it('It should toggle answer button', () => {
+    //   let answerToggleBtn = answerpage.getAnswerToggleBtn().click;
+    // });
 
-    it('It should toggle answer button', () => {
-      let answerToggleBtn = answerpage.getAnswerToggleBtn().click;
-    });
+    // it('should display answer input', () => {
+    //   const answerInput = answerpage.getAnswerTextInput();
+    //   expect(answerInput).toBeTruthy();
+    // });
 
-    it('should display answer input', () => {
-      const answerInput = answerpage.getAnswerTextInput();
-      expect(answerInput).toBeTruthy();
-    });
-
-    it('should fill in the answer form', () => {
-      loginpage.navigateTo('/answers');
+    // it('should fill in the answer form', () => {
+    //   loginpage.navigateTo('/answers');
   
-      let answerTextInput = answerpage.getAnswerTextInput();
-      answerTextInput.sendKeys('It is in Florida');
+    //   let answerTextInput = answerpage.getAnswerTextInput();
+    //   answerTextInput.sendKeys('It is in Florida');
   
-      expect(answerTextInput.getAttribute('value')).toEqual('It is in Florida');
+    //   expect(answerTextInput.getAttribute('value')).toEqual('It is in Florida');
 
-      let postAnswerBtn = answerpage.getPostAnswerBtn().click;
-    });
+    //   let postAnswerBtn = answerpage.getPostAnswerBtn().click;
+    // });
 
-    it('should redirect to answers page', () => {
-      homepage.navigateTo('/answers');
-    });
-  });
+
 
 });
