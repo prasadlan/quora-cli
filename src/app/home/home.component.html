@@ -68,9 +68,14 @@
       <md-card-actions> <button md-button class="vote-button">Upvote</button> <button md-button class="vote-button">Downvote</button> </md-card-actions>  -->
       <!-- <md-card> -->
         <md-list *ngFor= "let a1 of question.answers">
+            <md-card-content class="undomessage">
+              <md-list-item> You downvoted this answer. If you change your mind, you can undo your downvote. </md-list-item>
+              <div>Undo</div>
+            </md-card-content>
             <md-card-content>
               <md-list-item class="grandchild"> {{a1.answer}} </md-list-item>
             </md-card-content>
+            <md-card-actions class="custom-card-actions"> <button md-button class="upvote-button" (click)="upvote($event)">Upvote | 10</button> <button md-button class="downvote-button">Downvote</button> </md-card-actions>
             <!-- <md-card-subtitle> <span style="margin-right:25px;">{{a1.user.name}} answered on {{a1.created_on}}</span> </md-card-subtitle>  -->
         </md-list>
       <!-- </md-card> -->

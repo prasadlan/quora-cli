@@ -67,6 +67,24 @@ export class HomeComponent implements OnInit {
       });
   }
 
+  upvote(event): void {
+    event.preventDefault();
+    let upvoteEl = event.srcElement;
+    console.log(upvoteEl);
+    console.log(upvoteEl.classList.contains('upvote'));
+    let textStr = upvoteEl.getElementsByClassName('mat-button-wrapper')[0].innerHTML;
+    if(upvoteEl.classList.contains('upvoted')){
+      let count = parseInt(textStr.split("|")[1].trim()) - 1;
+      textStr = textStr.split("|")[0] + "| " + count;
+      upvoteEl.classList.remove('upvoted');
+    } else{
+      let count = parseInt(textStr.split("|")[1].trim()) + 1;
+      textStr = textStr.split("|")[0] + "| " + count;
+      upvoteEl.classList.add('upvoted');
+    }
+    upvoteEl.getElementsByClassName('mat-button-wrapper')[0].innerHTML = textStr;
+  }
+
   onSubmit(searchTerm:string) {
     
         this.userService.searchString = searchTerm;
