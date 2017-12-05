@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angula
   templateUrl: './answer.component.html',
   styleUrls: ['./answer.component.css']
 })
+
 export class AnswerComponent implements OnInit {
   questions: any = {};
   answerform: FormGroup;
@@ -99,7 +100,7 @@ export class AnswerComponent implements OnInit {
         });
         console.log(this.questionResults);
       }
-
+  
   logout() {
     this.router.navigate(['/login']);
   }
