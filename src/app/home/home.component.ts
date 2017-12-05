@@ -30,20 +30,19 @@ export class HomeComponent implements OnInit {
     this.askquestionform = fb.group({
       'question': ['']
     });
-    // this.answerForm = fb.group({
-    //   'answerQ': ['']
-    // });
   }
 
+  /**
+   * Default onload function. Loads when component is loaded.
+   */
   ngOnInit() {
     this.getQuestions();
   }
 
-  // postAnswer(value, question_id) {
-  //   this.answerService.postAnswer(value, question_id);
-  //   this.getQuestions();
-  // }
-
+  /**
+   * Function to get a list of all recent questions and their top answer if any.
+   * Sets the returned value, list of questions, to the property 'questions'.
+   */
   getQuestions() {
     this.homeService.getQuestions().then(data => {
       console.log(data);
@@ -56,7 +55,12 @@ export class HomeComponent implements OnInit {
     console.log(this.questions); 
   }
 
-
+  /**
+   * Function to post a new question.
+   *  
+   * @param value 
+   * value parameter is used to get the question text.
+   */
   askQuestion(value): void {
     this.homeService.askQuestion(value.question)
       .then(data => {
@@ -67,6 +71,12 @@ export class HomeComponent implements OnInit {
       });
   }
 
+  /**
+   * Function to upvote and undo upvote for an answer to a question.
+   * 
+   * @param event
+   * event parameter is used to link the click event to the upvote button clicked. 
+   */
   upvote(event): void {
     event.preventDefault();
     let upvoteEl = event.srcElement;
@@ -85,29 +95,38 @@ export class HomeComponent implements OnInit {
     upvoteEl.getElementsByClassName('mat-button-wrapper')[0].innerHTML = textStr;
   }
 
+  /**
+   * Function to get filtered questions based on the search term.
+   * 
+   * @param searchTerm 
+   * parameter searchTerm is the input value from search bar.
+   */
   onSubmit(searchTerm:string) {
-    
-        this.userService.searchString = searchTerm;
-        this.queryText = searchTerm;
-    
-        this.searchTerm = '';
+    this.userService.searchString = searchTerm;
+    this.queryText = searchTerm;
 
-        this.homeService.getSearch(searchTerm).then(data => {
-          console.log(data);
-          if(data.sucess){
-            this.questionResults = data.body
-            this.userService.questions = this.questionResults;
-            
-            this.queryText = '';
-  
-            this.router.navigate(['/search-results']);
-          } else{
-            console.log("not success");
-          }
-        });
-        console.log(this.questionResults);
+    this.searchTerm = '';
+
+    this.homeService.getSearch(searchTerm).then(data => {
+      console.log(data);
+      if(data.sucess){
+        this.questionResults = data.body
+        this.userService.questions = this.questionResults;
+        
+        this.queryText = '';
+
+        this.router.navigate(['/search-results']);
+      } else{
+        console.log("not success");
       }
-      logout() {
-        this.router.navigate(['/login']);
-      }
+    });
+    console.log(this.questionResults);
+  }
+
+  /**
+   * Function to logout current user.
+   */
+  logout() {
+    this.router.navigate(['/login']);
+  }
 }
