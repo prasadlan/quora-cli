@@ -35,6 +35,19 @@ export class AnswerComponent implements OnInit {
     });
   }
 
+  /**
+   * Default onload function. Loads when component is loaded.
+   */
+  ngOnInit() {
+    this.getQuestions();
+  }
+
+  /**
+   * Toggles the hidden text area in and out of view.
+   * 
+   * @param event 
+   * event parameter is used to link the click event to the button clicked.
+   */
   toggleAnswerDialog(event): void {
     let target = event.srcElement;
     let parent = target.parentNode;
@@ -49,10 +62,10 @@ export class AnswerComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    this.getQuestions();
-  }
-
+  /**
+   * Function to get all unanswered questions.
+   * Sets the returned value, list of questions, to the property 'questions'.
+   */
   getQuestions() {
     this.homeService.getUnansweredQuestionUrl().then(data => {
       if(data.success == true){
@@ -64,6 +77,14 @@ export class AnswerComponent implements OnInit {
     });
   } 
 
+  /**
+   * Function to post an answer for a question.
+   * Question is removed from answers page as soon as it is answered.
+   * 
+   * @param value 
+   * @param question_id 
+   * @param event 
+   */
   postAnswer(value, question_id, event) {
 
     this.answerService.postAnswer(value, question_id);
@@ -77,29 +98,36 @@ export class AnswerComponent implements OnInit {
     parent.style.display = "none";
   }
 
+  /**
+   * 
+   * 
+   * @param searchTerm 
+   */
   onSubmit(searchTerm:string) {
-    
-        this.userService.searchString = searchTerm;
-        this.queryText = searchTerm;
-    
-        this.searchTerm = '';
+    this.userService.searchString = searchTerm;
+    this.queryText = searchTerm;
 
-        this.homeService.getSearch(searchTerm).then(data => {
-          console.log(data);
-          if(data.sucess){
-            this.questionResults = data.body
-            this.userService.questions = this.questionResults;
-            
-            this.queryText = '';
-  
-            this.router.navigate(['/search-results']);
-          } else{
-            console.log("not success");
-          }
-        });
-        console.log(this.questionResults);
+    this.searchTerm = '';
+
+    this.homeService.getSearch(searchTerm).then(data => {
+      console.log(data);
+      if(data.sucess){
+        this.questionResults = data.body
+        this.userService.questions = this.questionResults;
+        
+        this.queryText = '';
+
+        this.router.navigate(['/search-results']);
+      } else{
+        console.log("not success");
       }
+    });
+    console.log(this.questionResults);
+  }
 
+  /**
+   * Function to logout current user.
+   */
   logout() {
     this.router.navigate(['/login']);
   }
