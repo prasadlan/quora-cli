@@ -16,11 +16,18 @@ export class AnswerComponent implements OnInit {
   questions: any = {};
   answerform: FormGroup;
   mdata: any = {};
-
-  questionResults = [];
+  statusMessage: string;
+  askquestionform: FormGroup;
+  currentUser = '';
+  isConnected = false;
   
-    private queryText = '';
-    searchTerm = '';
+  form: FormGroup;
+  status: string;
+
+  private queryText = '';
+  searchTerm = '';
+  questionResults = [];
+
   constructor(private fb: FormBuilder, private router: Router, private homeService:HomeService, private answerService:AnswerService, private userService: UserService) {
     this.answerform = fb.group({
       'answer': [''],
@@ -50,7 +57,6 @@ export class AnswerComponent implements OnInit {
     this.homeService.getUnansweredQuestionUrl().then(data => {
       if(data.success == true){
         this.questions = data.body;
-
       } else{
         console.log("not success");
       }
