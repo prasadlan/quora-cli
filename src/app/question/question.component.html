@@ -60,9 +60,16 @@
             </md-card-subtitle> 
               <md-list-item> {{a1.answer}} </md-list-item> -->
 
-          <md-card-title> {{a1.answer}} </md-card-title> 
-          <md-card-subtitle> <span style="margin-right:25px;">{{a1.user.name}}</span><span>Answered on {{a1.created_on}}</span> </md-card-subtitle> 
-          </md-card>  
+           
+          <div class="img-holder">
+              <img  id="image" src="./assets/LinkedInCover.jpg" class="user">
+          </div>
+          <!-- <md-card-subtitle class="child"> <span style="margin-right:25px;">{{question.user.name}}</span>
+             <span>Answered {{question.date}}</span> 
+          </md-card-subtitle> -->
+          <md-card-subtitle class="child"> <span style="margin-right:25px;">{{a1.user.name}}</span><span>Answered on {{a1.created_on}}</span> </md-card-subtitle> 
+          <md-card-content> {{a1.answer}} </md-card-content>  
+        </md-card>  
         </md-grid-tile>
     </div>
     <div class="right">

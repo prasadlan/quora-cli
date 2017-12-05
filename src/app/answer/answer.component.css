@@ -8,7 +8,8 @@
 }
 
 md-card{
-    overflow: auto;
+    overflow: none;
+    /* flex: none; */
 }
 
 md-grid-list{
@@ -17,6 +18,7 @@ md-grid-list{
 
 md-card{
     margin: 5px 0;
+    min-height: 100px;
 }
 
 .custom-button{
@@ -31,12 +33,12 @@ md-card-content{
 .left{
     float: left;
     width: 200px;
-    margin: 20px 25px 0 200px;
+    margin: 30px 25px 0 100px;
 }
 
 .centre{
     float: left;
-    width: 600px;
+    width: 650px;
     padding-top: 30px;
 }
 
@@ -52,7 +54,22 @@ md-card-content{
     font-size: 0.9em!important;
     height:35px!important;
     color: #666!important;
+    text-decoration: none;
 }
+
+.fill-space {
+    flex: 1 1 auto;
+}
+
+.search-box {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .search-box-width {
+    width: 100%;
+  }
 
 md-card-title{
     font-size: 1.4em;
@@ -67,10 +84,43 @@ md-card-subtitle{
     font-size: 0.8em;
 }
 
+md-card-title{
+    font-size: 1.2em;
+}
+
 md-toolbar{
     background: #b92b27!important;
 }
 
-.post-answer{
-    display: none;
+.img-holder {
+    position: absolute;
+    left: 20px;
+}
+
+.child {
+    position: relative;
+    left: 50px;
+}
+
+.grandchild {
+    position: relative;
+    padding-top: 50px;
+    /* left: 10px; */
+}
+
+mat-list-item-content{
+    height: initial!important;
+}
+
+.md-list-item-height {
+    height: initial!;
+}
+
+.user {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  
+    object-fit: cover;
 }
