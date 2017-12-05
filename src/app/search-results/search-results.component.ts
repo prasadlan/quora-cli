@@ -12,7 +12,8 @@ import { UserService } from '../services/user.service';
 })
 export class SearchResultsComponent implements OnInit {
 
-  public questions = [];
+  //public questions = [];
+  questions: any = {};
   searchTerm = '';
 
   questionResults = [];
@@ -22,6 +23,7 @@ export class SearchResultsComponent implements OnInit {
 
   ngOnInit() {
     
+    this.getQuestions();
     this.searchTerm = this.userService.searchString;
     console.log("ser " + this.userService.questions);
     if(this.userService.questions.length != 0) {
@@ -32,6 +34,18 @@ export class SearchResultsComponent implements OnInit {
     else {
       this.questions[0] = ['No results!'];
     }
+  }
+
+  getQuestions() {
+    this.homeService.getQuestions().then(data => {
+      console.log(data);
+      if(data.success == true){
+        this.questions = data.body
+      } else{
+        console.log("not success");
+      }
+    });
+    console.log(this.questions); 
   }
 
   onSubmit(searchTerm:string) {
