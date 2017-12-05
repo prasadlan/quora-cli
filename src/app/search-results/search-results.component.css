@@ -8,7 +8,8 @@
 }
 
 md-card{
-    overflow: auto;
+    overflow: none;
+    flex: none;
 }
 
 md-grid-list{
@@ -52,6 +53,7 @@ md-card-content{
     font-size: 0.9em!important;
     height:35px!important;
     color: #666!important;
+    text-decoration: none;
 }
 
 .fill-space {
@@ -87,4 +89,23 @@ md-card-title{
 
 md-toolbar{
     background: #b92b27!important;
+}
+
+.img-holder {
+    position: absolute;
+    left: 20px;
+}
+
+.child {
+    position: relative;
+    left: 50px;
+}
+
+.user {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  
+    object-fit: cover;
 }

@@ -9,7 +9,7 @@
 
 md-card{
     overflow: none;
-    flex: none;
+    /* flex: none; */
 }
 
 md-grid-list{
@@ -18,6 +18,7 @@ md-grid-list{
 
 md-card{
     margin: 5px 0;
+    min-height: 100px;
 }
 
 .custom-button{
@@ -93,12 +94,26 @@ md-toolbar{
 
 .img-holder {
     position: absolute;
-    left: 5px;
+    left: 20px;
 }
 
 .child {
     position: relative;
     left: 50px;
+}
+
+.grandchild {
+    position: relative;
+    padding-top: 50px;
+    /* left: 10px; */
+}
+
+mat-list-item-content{
+    height: initial!important;
+}
+
+.md-list-item-height {
+    height: initial!;
 }
 
 .user {
@@ -108,4 +123,42 @@ md-toolbar{
     border-radius: 50%;
   
     object-fit: cover;
-  }
+}
+
+.upvote-button {
+    line-height: 22px!important;
+    border-radius: 3px;
+    padding: 3px 7px 4px 7px;
+    background: #f1f8fb;
+    color: #2b6dad;
+    border: 1px solid #bbcadc;
+}
+
+.downvote-button {
+    line-height: 22px!important;
+    border-radius: 3px;
+    color: #999;
+    
+    padding: 3px 8px 4px 8px;
+}
+
+.custom-card-actions {
+    margin: 0!important;
+}
+
+.upvoted{
+    background: #f6f6f6;
+    color: #919191;
+    border: 1px solid #919191;
+}
+
+.undomessage{
+    display: none;
+}
+
+.undo{
+    cursor: pointer;
+    padding: 3px 6px;
+    background: #f6f6f6;
+    color: #919191;
+}

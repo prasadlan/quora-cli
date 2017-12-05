@@ -36,7 +36,8 @@
               <md-card-title> 
                   {{question_name}}
               </md-card-title> 
-              <md-card-subtitle> <span style="margin-right:25px;">{{question.user}}</span>
+              <md-card-subtitle> 
+                <!-- <span style="margin-right:25px;">{{question.user.name}}</span> -->
                   <!-- <span>Answered {{question.date}}</span>  -->
               </md-card-subtitle> 
               <md-card-actions> <button md-button class="answer-button vote-button" (click)="toggleAnswerDialog($event);">Answer</button> <button md-button class="vote-button">Pass</button> <button md-button class="vote-button">Follow</button> <button md-button class="vote-button">Downvote</button> </md-card-actions>
@@ -48,9 +49,27 @@
               </form>
           </md-card>
           <md-card *ngFor= "let a1 of answers">
-          <md-card-title> {{a1.answer}} </md-card-title> 
-          <md-card-subtitle> <span style="margin-right:25px;">{{a1.user}}</span><span>Answered {{a1.created_on}}</span> </md-card-subtitle> 
-          </md-card>  
+              <!-- <div class="img-holder">
+                  <img  id="image" src="./assets/LinkedInCover.jpg" class="user">
+              </div>
+              
+            <md-card-title class="child"> 
+              <a class="custom-list-item" md-list-item routerLink="/question/{{ question._id }}" routerLinkActive="active"> {{question.question}}  </a>
+            </md-card-title> 
+            <md-card-subtitle class="child"> <span style="margin-right:25px;">{{question.user.name}}</span>
+            </md-card-subtitle> 
+              <md-list-item> {{a1.answer}} </md-list-item> -->
+
+           
+          <div class="img-holder">
+              <img  id="image" src="./{{a1.user.name}}" class="user">
+          </div>
+          <!-- <md-card-subtitle class="child"> <span style="margin-right:25px;">{{question.user.name}}</span>
+             <span>Answered {{question.date}}</span> 
+          </md-card-subtitle> -->
+          <md-card-subtitle class="child"> <span style="margin-right:25px;">{{a1.user.name}}</span><span>Answered on {{a1.created_on}}</span> </md-card-subtitle> 
+          <md-card-content> {{a1.answer}} </md-card-content>  
+        </md-card>  
         </md-grid-tile>
     </div>
     <div class="right">
