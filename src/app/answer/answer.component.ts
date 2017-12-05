@@ -16,11 +16,18 @@ export class AnswerComponent implements OnInit {
   questions: any = {};
   answerform: FormGroup;
   mdata: any = {};
-
-  questionResults = [];
+  statusMessage: string;
+  askquestionform: FormGroup;
+  currentUser = '';
+  isConnected = false;
   
-    private queryText = '';
-    searchTerm = '';
+  form: FormGroup;
+  status: string;
+
+  private queryText = '';
+  searchTerm = '';
+  questionResults = [];
+
   constructor(private fb: FormBuilder, private router: Router, private homeService:HomeService, private answerService:AnswerService, private userService: UserService) {
     this.answerform = fb.group({
       'answer': [''],
@@ -50,17 +57,24 @@ export class AnswerComponent implements OnInit {
     this.homeService.getUnansweredQuestionUrl().then(data => {
       if(data.success == true){
         this.questions = data.body;
-
+        console.log(this.questions);
       } else{
         console.log("not success");
       }
-    });;
-    console.log(this.questions); 
+    });
   } 
 
-  postAnswer(value, question_id) {
+  postAnswer(value, question_id, event) {
+
     this.answerService.postAnswer(value, question_id);
-    this.getQuestions();
+
+    let target = event.srcElement;
+    let parent = target.parentNode;
+    while(parent.nodeName != 'MD-CARD') {
+      parent = parent.parentNode;
+    }
+    
+    parent.style.display = "none";
   }
 
   onSubmit(searchTerm:string) {

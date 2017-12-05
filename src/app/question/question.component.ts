@@ -3,6 +3,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Http } from '@angular/http'; 
 import { UserService } from '../services/user.service';
 import { HomeService } from '../home.service';
+import { AnswerService } from '../services/answer.service';
+import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-question',
@@ -15,16 +17,56 @@ export class QuestionComponent implements OnInit {
   answers = [];
   question_name = '';
 
-  questionResults = [];
+  questions: any = {};
+  answerform: FormGroup;
+  mdata: any = {};
+  statusMessage: string;
+  askquestionform: FormGroup;
+  currentUser = '';
+  isConnected = false;
   
-    private queryText = '';
-    searchTerm = '';
-  constructor(private http: Http, private router: Router, private activatedRoute: ActivatedRoute, private userService: UserService, private homeService:HomeService) {
-    
+  form: FormGroup;
+  status: string;
+
+  private queryText = '';
+  searchTerm = '';
+  questionResults = [];
+
+  constructor(private fb: FormBuilder, private http: Http, private router: Router, private activatedRoute: ActivatedRoute, private userService: UserService, private homeService:HomeService, private answerService: AnswerService) {
+    this.answerform = fb.group({
+      'answer': [''],
+      'question_id': ['']
+    });
    }
 
-  ngOnInit() {
+   getQuestions() {
+    this.homeService.getUnansweredQuestionUrl().then(data => {
+      if(data.success == true){
+        console.log("all questions retrieved");
+        this.questions = data.body;
+        console.log("ans"+this.questions);
+      } else{
+        console.log("not success");
+      }
+    });;
+    console.log(this.questions); 
+  }
+  
+   toggleAnswerDialog(event): void {
+    let target = event.srcElement;
+    let parent = target.parentNode;
+    while(parent.nodeName != 'MD-CARD'){
+      parent = parent.parentNode;
+    }
+    let answerdialog = parent.lastElementChild;
+    if (answerdialog.style.display === "block") {
+      answerdialog.style.display = "none";
+    } else {
+      answerdialog.style.display = "block";
+    }
+  }
 
+  ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) =>{
       this.question = params['question'];
       const req = this.http.get('http://localhost:3000/question/get?question_id='+this.question);
@@ -42,6 +84,11 @@ export class QuestionComponent implements OnInit {
         }
       );
     });
+  }
+
+  postAnswer(value, question_id) {
+    this.answerService.postAnswer(value, question_id);
+    this.getQuestions();
   }
 
   onSubmit(searchTerm:string) {
