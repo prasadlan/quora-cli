@@ -1,75 +1,25 @@
-<div class="login-holder">
 <md-toolbar color="accent" theme="light"> <span class="remaining"></span><strong>Quora </strong></md-toolbar>
-<md-tab-group class="tabs" md-stretch-tabs align="center">
-  <md-tab md-raised-tab label="Sign Up" color="accent">
-    <md-grid-list cols="1" rowHeight="4:3">
-      <md-grid-tile>
         <md-card>
-        <form [formGroup]="signupform" (ngSubmit)="signupUser(signupform.value)">
-          <div>
-           <p>
-            <md-form-field class="FullName">
-              <input mdInput placeholder="Full Name" formControlName="name" value="" [(ngModel)]="name" required>
-            </md-form-field>
-           </p>
-           <p>
-            <md-form-field class="UserName">
-              <input mdInput placeholder="Username" formControlName="username" value="" [(ngModel)]="username" required>
-            </md-form-field>
-           </p>
-           <p>
-            <md-form-field class="Email">
-             <input mdInput placeholder="Email" formControlName="email" value="" [(ngModel)]="email" required>
-            </md-form-field>
-           </p>
-           <p>
-            <md-form-field class="Password">
-              <input mdInput type="password" placeholder="Password" formControlName="password" value="" [(ngModel)]="password" required>
-            </md-form-field>
-           </p>
-           <p>
-            <button md-raised-button color="accent" type="submit" class="custom-button" >Sign Up</button> 
-            &nbsp; &nbsp; &nbsp; &nbsp;
-            <button md-raised-button color="accent" routerLink="/login" class="custom-button">Cancel</button>
-          </p>
-          </div>
-        </form>
-        <!-- <p>
-          <button id="signUpBtn" (click) = "redirect();" md-raised-button color="accent" class="custom-button">Sign Up</button>
-        </p> -->
-        </md-card>
-      </md-grid-tile>
-    </md-grid-list>
-  </md-tab>
-  <md-tab md-raised-tab text-color="accent" label="Login">
-    <md-grid-list cols="1" rowHeight="4:3">
-      <md-grid-tile>
-        <md-card>
-          <form [formGroup]="signinform" (ngSubmit)="loginUser(signinform.value)">
+          <form [formGroup]="signinform" (ngSubmit)="loginUser(signinform.value)" align="center">
             <div>
            <p>
             <md-form-field class="UserName">
-              <input mdInput placeholder="Username" formControlName="username" value="" [(ngModel)]="username" required>
+              <input mdInput placeholder="Username" formControlName="username" value="" [(ngModel)]="username" required/>
             </md-form-field>
            </p>
            <p>
             <md-form-field class="Password">
-              <input mdInput type="password" placeholder="Password" formControlName="password" value="" [(ngModel)]="password" required>
+              <input mdInput placeholder="Password" type="password" formControlName="password" value="" [(ngModel)]="password" required/>
             </md-form-field>
            </p>
            <p>
              <button md-raised-button color="accent" type="submit" class="custom-button">Login</button> 
              &nbsp; &nbsp; &nbsp;
-             <a href="">Forgot Password?</a>
+             <a href="/signup">Register</a>
            </p>
           </div>
         </form>
         </md-card>
-      </md-grid-tile>
-    </md-grid-list>
-  </md-tab>
-</md-tab-group>
-</div>
 
 <!-- Copyright 2017 Google Inc. All Rights Reserved.
     Use of this source code is governed by an MIT-style license that

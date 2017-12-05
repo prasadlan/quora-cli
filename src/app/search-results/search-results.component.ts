@@ -4,45 +4,37 @@ import { Question } from '../question';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angular/forms';
 import { UserService } from '../services/user.service';
-// import { AnswerService } from '../services/answer.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-search-results',
+  templateUrl: './search-results.component.html',
+  styleUrls: ['./search-results.component.css']
 })
-export class HomeComponent implements OnInit {
+export class SearchResultsComponent implements OnInit {
+
+  //public questions = [];
   questions: any = {};
-  statusMessage: string;
-  askquestionform: FormGroup;
-  currentUser = '';
-  isConnected = false;
-  
-  form: FormGroup;
-  status: string;
-
-  questionResults = [];
-
-  private queryText = '';
   searchTerm = '';
 
-  constructor(private userService: UserService, private cd: ChangeDetectorRef, private fb: FormBuilder, private router: Router, private homeService: HomeService) {
-    this.askquestionform = fb.group({
-      'question': ['']
-    });
-    // this.answerForm = fb.group({
-    //   'answerQ': ['']
-    // });
-  }
+  questionResults = [];
+  
+  private queryText = '';
+  constructor(private userService: UserService, private router: Router, private homeService: HomeService) { }
 
   ngOnInit() {
+    
     this.getQuestions();
+    this.searchTerm = this.userService.searchString;
+    console.log("ser " + this.userService.questions);
+    if(this.userService.questions.length != 0) {
+      for(let i = 0; i < this.userService.questions.length; i++) {
+        this.questions[i] = this.userService.questions[i];
+      }
+    }
+    else {
+      this.questions[0] = ['No results!'];
+    }
   }
-
-  // postAnswer(value, question_id) {
-  //   this.answerService.postAnswer(value, question_id);
-  //   this.getQuestions();
-  // }
 
   getQuestions() {
     this.homeService.getQuestions().then(data => {
@@ -54,17 +46,6 @@ export class HomeComponent implements OnInit {
       }
     });
     console.log(this.questions); 
-  }
-
-
-  askQuestion(value): void {
-    this.homeService.askQuestion(value.question)
-      .then(data => {
-        console.log("saved !"); 
-        this.statusMessage = 'Question posted successfully';
-        this.askquestionform.reset();
-        this.getQuestions();
-      });
   }
 
   onSubmit(searchTerm:string) {
@@ -89,7 +70,9 @@ export class HomeComponent implements OnInit {
         });
         console.log(this.questionResults);
       }
-      logout() {
-        this.router.navigate(['/login']);
-      }
+
+  logout() {
+    this.router.navigate(['/login']);
+  }
+  
 }

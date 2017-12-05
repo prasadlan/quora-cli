@@ -20,4 +20,21 @@ export class AnswerService {
     console.log(answerobj);
     return this.http.post(this.saveAnswerUrl, answerobj, options).map(data => data.json()).toPromise();
   }
+
+  postAnswer(value, question_id) {
+    let obj = {
+      name: value.answer,
+      question_id: question_id,
+      is_anonymous: false
+    }
+    console.log(obj);
+    this.saveAnswer(obj).then(data => {
+      if(data.success == true){
+        console.log("Answer saved !");
+      } else{
+        console.log("Answer not saved !");
+      }
+    });
+  }
+
 }

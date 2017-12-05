@@ -1,0 +1,48 @@
+<md-toolbar color="primary">
+  <span style="margin-right:25px;">Quora</span>
+    
+  <nav>
+    <a routerLink="/home" class="doc-button mat-button" routerLinkActive="" href="/home">Home</a>
+    <a routerLink="/answers" class="doc-button mat-button" routerLinkActive="" href="/answers">Answers</a>
+    <a routerLink="/notifications" class="doc-button mat-button" routerLinkActive="" href="/notifications">Notifications</a>
+    <span class="fill-space"></span>
+    <a routerLink="/" routerLinkActive=""></a>
+  </nav>
+      <md-icon mdPrefix style="margin-left:10px;"><i class="material-icons">search</i></md-icon>
+      <input type="text" [(ngModel)]="searchTerm" id="search" mdInput placeholder="Search Quora">
+      <button class="doc-button mat-button" (click)="onSubmit(searchTerm)" color="primary" type="submit" id="searchBtn">GO!</button>
+    <span>
+      <button md-button (click)="logout()">Logout
+      <!-- <md-icon><i class="material-icons">account_circle</i></md-icon> -->
+      <!-- <md-menu #menu="mdMenu" [overlapTrigger]="false">
+        <a md-menu-item routerLink="/profile" class="doc-button mat-button" routerLinkActive="" href="/profile">Profile</a>
+        <a md-menu-item routerLink="/login" class="doc-button mat-button" href="/login">Logout</a>
+      </md-menu> -->
+      </button>
+    </span>
+  
+  <!-- <router-outlet></router-outlet> -->
+</md-toolbar> 
+
+<md-grid-list cols="8" rowHeight="2:1"> 
+  <div class="left">
+    
+  </div>
+  <div class="centre">
+  <md-grid-tile colspan="4">
+      <md-card *ngFor="let question of questions"> 
+          <md-card-title> 
+            <a class="custom-list-item" md-list-item routerLink="/question/{{ question._id }}" routerLinkActive="active"> {{question.question}}  </a>
+          </md-card-title> 
+          <md-card-subtitle> <span style="margin-right:25px;">{{question.user}}</span>
+            <!-- <span>Answered {{question.date}}</span>  -->
+          </md-card-subtitle> 
+      </md-card> 
+  </md-grid-tile>
+  </div>
+  <div class="right">
+  <md-grid-tile colspan="2"> 
+     
+  </md-grid-tile>
+  </div>
+</md-grid-list>

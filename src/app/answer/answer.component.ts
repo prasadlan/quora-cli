@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../home.service';
 import { AnswerService } from '../services/answer.service';
+import { UserService } from '../services/user.service';
 import { Question } from '../question';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angular/forms';
@@ -14,8 +15,20 @@ import { FormBuilder, FormGroup, NgForm, Validators, FormControl } from '@angula
 export class AnswerComponent implements OnInit {
   questions: any = {};
   answerform: FormGroup;
+  mdata: any = {};
+  statusMessage: string;
+  askquestionform: FormGroup;
+  currentUser = '';
+  isConnected = false;
+  
+  form: FormGroup;
+  status: string;
 
-  constructor(private fb: FormBuilder, private router: Router, private home:HomeService, private answerService:AnswerService) {
+  private queryText = '';
+  searchTerm = '';
+  questionResults = [];
+
+  constructor(private fb: FormBuilder, private router: Router, private homeService:HomeService, private answerService:AnswerService, private userService: UserService) {
     this.answerform = fb.group({
       'answer': [''],
       'question_id': ['']
@@ -41,31 +54,53 @@ export class AnswerComponent implements OnInit {
   }
 
   getQuestions() {
-    this.home.getQuestions().then(data => {
+    this.homeService.getUnansweredQuestionUrl().then(data => {
       if(data.success == true){
         this.questions = data.body;
-
+        console.log(this.questions);
       } else{
         console.log("not success");
       }
-    });;
-    console.log(this.questions); 
+    });
   } 
 
-  postAnswer(value) {
-    let obj = {
-      name: value.answer,
-      question_id: value.question_id,
-      is_anonymous: false
+  postAnswer(value, question_id, event) {
+
+    this.answerService.postAnswer(value, question_id);
+
+    let target = event.srcElement;
+    let parent = target.parentNode;
+    while(parent.nodeName != 'MD-CARD') {
+      parent = parent.parentNode;
     }
-    console.log(obj);
-    this.answerService.saveAnswer(obj).then(data => {
-      if(data.success == true){
-        console.log("Answer saved !");
-      } else{
-        console.log("Answer not saved !");
-      }
-    });
+    
+    parent.style.display = "none";
   }
 
+  onSubmit(searchTerm:string) {
+    
+        this.userService.searchString = searchTerm;
+        this.queryText = searchTerm;
+    
+        this.searchTerm = '';
+
+        this.homeService.getSearch(searchTerm).then(data => {
+          console.log(data);
+          if(data.sucess){
+            this.questionResults = data.body
+            this.userService.questions = this.questionResults;
+            
+            this.queryText = '';
+  
+            this.router.navigate(['/search-results']);
+          } else{
+            console.log("not success");
+          }
+        });
+        console.log(this.questionResults);
+      }
+
+  logout() {
+    this.router.navigate(['/login']);
+  }
 }
