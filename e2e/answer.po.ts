@@ -18,11 +18,11 @@ export class AnswerPage {
         return browser.get(path);
     }
     
-     getQuestionTextInput() {
+     getAnswerTextInput() {
         return element(by.css('#md-input-1'));
     }
 
-    getAskQuestionBtn() {
+    getPostQuestionBtn() {
         return element(by.css('#md-raised-button-2'));
     }
 }
