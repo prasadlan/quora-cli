@@ -13,20 +13,16 @@ browser.driver.controlFlow().execute = function() {
   return origFn.apply(browser.driver.controlFlow(), args);
 };
 
-export class LoginPage {
-    navigateTo(path = '/login') {
+export class HomePage {
+    navigateTo(path = '/home') {
         return browser.get(path);
     }
-    
-    getUserNameInput() {
-        return element(by.css('#md-input-0'));
-    }
 
-    getPasswordInput() {
+    getQuestionTextInput() {
         return element(by.css('#md-input-1'));
     }
 
-    getLoginButton() {
-        return element(by.id('loginBtn'));
+    getAskQuestionBtn() {
+        return element(by.css('#md-raised-button-2'));
     }
 }

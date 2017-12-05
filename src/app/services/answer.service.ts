@@ -6,6 +6,9 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AnswerService {
 
+  /**
+   * List of URLs used by services to make a http request.
+   */
   private saveAnswerUrl = 'http://localhost:3000/answer/put';
 
   constructor(private http: Http) { }
@@ -21,6 +24,14 @@ export class AnswerService {
     return this.http.post(this.saveAnswerUrl, answerobj, options).map(data => data.json()).toPromise();
   }
 
+  /**
+   * Service to post an answer to question.
+   * 
+   * @param value 
+   * parameter value is the answer posted for a question.
+   * @param question_id 
+   * parameter question_id is the question id for which answer is posted.
+   */
   postAnswer(value, question_id) {
     let obj = {
       name: value.answer,

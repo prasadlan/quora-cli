@@ -39,20 +39,48 @@ export class QuestionComponent implements OnInit {
     });
    }
 
-   getQuestions() {
+   /**
+    * Default onload function. Loads when component is loaded.
+    */
+   ngOnInit() {
+    this.activatedRoute.params.subscribe((params: Params) =>{
+      this.question = params['question'];
+      const req = this.http.get('http://localhost:3000/question/get?question_id='+this.question);
+  
+      req.subscribe(
+        res => {
+          var response = res["_body"];
+          console.log("question object of one question is: "+response['body']);
+          console.log("question object  is: "+response);
+          this.answers = JSON.parse(response)['body']['answers'];
+          this.question_name = JSON.parse(response)['body']['question'];
+        }
+      );
+    });
+  }
+
+  /**
+   * Function to get all unanswered questions.
+   * Sets the returned value, list of questions, to the property 'questions'.
+   */
+  getQuestions() {
     this.homeService.getUnansweredQuestionUrl().then(data => {
       if(data.success == true){
-        console.log("all questions retrieved");
         this.questions = data.body;
         console.log("ans"+this.questions);
       } else{
         console.log("not success");
       }
-    });;
-    console.log(this.questions); 
+    });
   }
   
-   toggleAnswerDialog(event): void {
+  /**
+   * Toggles the hidden text area in and out of view.
+   * 
+   * @param event 
+   * event parameter is used to link the click event to the button clicked.
+   */
+  toggleAnswerDialog(event): void {
     let target = event.srcElement;
     let parent = target.parentNode;
     while(parent.nodeName != 'MD-CARD'){
@@ -66,54 +94,48 @@ export class QuestionComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) =>{
-      this.question = params['question'];
-      const req = this.http.get('http://localhost:3000/question/get?question_id='+this.question);
-      //var ques = JSON.stringify(this.question);
-      //console.log(ques);
-      //console.log('QUESTION OBJ IS' +ques['id']);
-      req.subscribe(
-        res => {
-          var response = res["_body"];
-          
-          console.log("question object of one question is: "+response['body']);
-          console.log("question object  is: "+response);
-          this.answers = JSON.parse(response)['body']['answers'];
-          this.question_name = JSON.parse(response)['body']['question'];
-        }
-      );
-    });
-  }
-
+  /**
+   * Function to post answer to the question.
+   * 
+   * @param value 
+   * parameter value is the answer posted for a question.
+   * @param question_id 
+   * parameter question_id is the question id for which answer is posted.
+   */
   postAnswer(value, question_id) {
     this.answerService.postAnswer(value, question_id);
     window.location.reload();
   }
 
+  /**
+   * Function to get filtered questions based on the search term.
+   * 
+   * @param searchTerm 
+   * parameter searchTerm is the input value from search bar.
+   */
   onSubmit(searchTerm:string) {
-    
-        this.userService.searchString = searchTerm;
-        this.queryText = searchTerm;
-    
-        this.searchTerm = '';
+    this.userService.searchString = searchTerm;
+    this.queryText = searchTerm;
+    this.searchTerm = '';
+    this.homeService.getSearch(searchTerm).then(data => {
+      console.log(data);
+      if(data.sucess){
+        this.questionResults = data.body
+        this.userService.questions = this.questionResults;
+        
+        this.queryText = '';
 
-        this.homeService.getSearch(searchTerm).then(data => {
-          console.log(data);
-          if(data.sucess){
-            this.questionResults = data.body
-            this.userService.questions = this.questionResults;
-            
-            this.queryText = '';
-  
-            this.router.navigate(['/search-results']);
-          } else{
-            console.log("not success");
-          }
-        });
-        console.log(this.questionResults);
+        this.router.navigate(['/search-results']);
+      } else{
+        console.log("not success");
       }
+    });
+    console.log(this.questionResults);
+  }
 
+  /**
+   * Function to logout current user.
+   */
   logout() {
     this.router.navigate(['/login']);
   }
