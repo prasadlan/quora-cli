@@ -28,6 +28,9 @@ export class ProfileComponent implements OnInit {
   // currentUser: User;
   // isUser: boolean;
 
+  /**
+   * Default onload function. Loads when component is loaded.
+   */
   ngOnInit() {
     this.imagesrc = './assets/LinkedInCover.jpg';
   //   let User = JSON.parse(localStorage.getItem("currentUser"));

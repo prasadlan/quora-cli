@@ -25,10 +25,17 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /**
+   * Default onload function. Loads when component is loaded.
+   */
   ngOnInit() {
     console.log("ngInit of login");
   }
 
+  /**
+   * 
+   * @param e 
+   */
   loginUser(e) {
   	console.log(e);
   	const username = e.username;
