@@ -120,6 +120,10 @@ export class HomeComponent implements OnInit {
     });
     console.log(this.questionResults);
   }
+
+  /**
+   * Function to logout current user.
+   */
   logout() {
     this.router.navigate(['/login']);
   }
