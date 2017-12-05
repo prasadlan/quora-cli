@@ -124,3 +124,7 @@ mat-list-item-content{
   
     object-fit: cover;
 }
+
+.post-answer {
+    display: none;
+}
