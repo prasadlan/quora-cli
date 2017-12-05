@@ -88,7 +88,7 @@ export class QuestionComponent implements OnInit {
 
   postAnswer(value, question_id) {
     this.answerService.postAnswer(value, question_id);
-    this.getQuestions();
+    window.location.reload();
   }
 
   onSubmit(searchTerm:string) {
