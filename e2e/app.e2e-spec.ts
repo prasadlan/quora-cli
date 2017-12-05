@@ -135,4 +135,36 @@ describe('Quora App', () => {
     });
   });
 
+   /* Describe for answer */ 
+   describe('Home page for the user', () => {
+    beforeEach(() => {
+      answerpage = new AnswerPage();
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+    });
+
+    it('It should toggle answer button', () => {
+      let answerToggleBtn = answerpage.getAnswerToggleBtn().click;
+    });
+
+    it('should display answer input', () => {
+      const answerInput = answerpage.getAnswerTextInput();
+      expect(answerInput).toBeTruthy();
+    });
+
+    it('should fill in the answer form', () => {
+      loginpage.navigateTo('/answers');
+  
+      let answerTextInput = answerpage.getAnswerTextInput();
+      answerTextInput.sendKeys('It is in Florida');
+  
+      expect(answerTextInput.getAttribute('value')).toEqual('It is in Florida');
+
+      let postAnswerBtn = answerpage.getPostAnswerBtn().click;
+    });
+
+    it('should redirect to answers page', () => {
+      homepage.navigateTo('/answers');
+    });
+  });
+
 });

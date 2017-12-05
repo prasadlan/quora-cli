@@ -34,18 +34,17 @@ export class SearchResultsComponent implements OnInit {
    * Default onload function. Loads when component is loaded.
    */
   ngOnInit() {
-    this.getQuestions();
-    this.searchTerm = this.userService.searchString;
+    //this.getQuestions();
+    this.searchTerm = this.homeService.searchString;
     console.log("searchTerm"+this.searchTerm);
-    console.log("ser " + this.userService.questions);
-    if(this.userService.questions.length != 0) {
-      for(let i = 0; i < this.userService.questions.length; i++) {
-        this.questions[i] = this.userService.questions[i];
-      }
+    console.log("ser " + this.homeService.questions);
+    if(this.homeService.questions.length != 0) {
+      this.questions = this.homeService.questions;
     }
     else {
       this.questions = ['No results!'];
     }
+    console.log(this.questions);
   }
 
   /**
@@ -71,7 +70,7 @@ export class SearchResultsComponent implements OnInit {
    * parameter searchTerm is the input value from search bar.
    */
   onSubmit(searchTerm:string) {
-    this.userService.searchString = searchTerm;
+    this.homeService.searchString = searchTerm;
     this.queryText = searchTerm;
 
     this.searchTerm = '';
@@ -80,7 +79,7 @@ export class SearchResultsComponent implements OnInit {
       console.log(data);
       if(data.sucess){
         this.questionResults = data.body
-        this.userService.questions = this.questionResults;
+        this.homeService.questions = this.questionResults;
         this.queryText = '';
         this.router.navigate(['/search-results']);
       } else{
