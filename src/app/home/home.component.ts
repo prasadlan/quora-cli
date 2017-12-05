@@ -102,7 +102,7 @@ export class HomeComponent implements OnInit {
    * parameter searchTerm is the input value from search bar.
    */
   onSubmit(searchTerm:string) {
-    this.userService.searchString = searchTerm;
+    this.homeService.searchString = searchTerm;
     this.queryText = searchTerm;
 
     this.searchTerm = '';
@@ -111,10 +111,8 @@ export class HomeComponent implements OnInit {
       console.log(data);
       if(data.sucess){
         this.questionResults = data.body
-        this.userService.questions = this.questionResults;
-        
+        this.homeService.questions = this.questionResults;
         this.queryText = '';
-
         this.router.navigate(['/search-results']);
       } else{
         console.log("not success");
